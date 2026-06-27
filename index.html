@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Тест плашки</title>
+    <title>Второй звонок</title>
     <style>
         * {
             margin: 0;
@@ -12,19 +12,21 @@
         }
         body {
             background: #0b0a08;
+            font-family: 'Georgia', serif;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
-            flex-direction: column;
         }
         #start-screen {
             text-align: center;
+            max-width: 800px;
+            width: 100%;
         }
         #start-screen img {
-            max-width: 90%;
-            max-height: 70vh;
+            max-width: 100%;
+            height: auto;
             border: 2px solid #d4af37;
             box-shadow: 0 0 60px rgba(212, 175, 55, 0.15);
         }
@@ -34,7 +36,6 @@
             background: transparent;
             border: 2px solid #d4af37;
             color: #d4af37;
-            font-family: 'Georgia', serif;
             font-size: 1.3rem;
             letter-spacing: 2px;
             cursor: pointer;
@@ -47,10 +48,107 @@
         }
         #main-content {
             display: none;
-            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        #main-content h1 {
             color: #d4af37;
-            font-size: 2rem;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        #main-content p {
+            color: #e0d5b0;
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 1.4rem;
+        }
+        .document {
+            background: #f4e4bc;
+            color: #1a1a1a;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 700;
+            padding: 24px 28px;
+            margin: 30px 0;
+            border-left: 4px solid #d4af37;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+        }
+        .document p {
+            color: #1a1a1a;
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+        }
+        .img-inline {
+            max-width: 100%;
+            height: auto;
+            margin: 30px auto;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            display: block;
+        }
+        .nav-buttons {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 999;
+        }
+        .nav-buttons button {
+            background: rgba(11, 10, 8, 0.85);
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            padding: 8px 18px;
             font-family: 'Georgia', serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: 0.3s;
+            letter-spacing: 1px;
+        }
+        .nav-buttons button:hover {
+            background: #d4af37;
+            color: #0b0a08;
+        }
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 30px auto 40px;
+            background: #1a1712;
+            border: 1px solid #d4af37;
+        }
+        .video-wrapper video {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        .video-controls {
+            position: absolute;
+            bottom: 12px;
+            right: 16px;
+            z-index: 10;
+        }
+        .video-controls button {
+            background: rgba(11, 10, 8, 0.8);
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            font-size: 1.4rem;
+            padding: 4px 14px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: 'Georgia', serif;
+            line-height: 1;
+        }
+        .video-controls button:hover {
+            background: #d4af37;
+            color: #0b0a08;
+        }
+        @media (max-width: 700px) {
+            #main-content p {
+                font-size: 1rem;
+            }
+            .document {
+                padding: 16px 18px;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -62,15 +160,71 @@
     </div>
 
     <div id="main-content">
-        <h1>✅ Кнопка работает!</h1>
-        <p>Текст и картинки появятся здесь.</p>
+
+        <div class="nav-buttons">
+            <button onclick="window.scrollTo({top:0, behavior:'smooth'});">Home</button>
+        </div>
+
+        <div class="video-wrapper">
+            <video id="promo-video" muted autoplay loop playsinline>
+                <source src="Промо Второй звонок.mp4" type="video/mp4">
+                Ваш браузер не поддерживает видео.
+            </video>
+            <div class="video-controls">
+                <button id="sound-toggle" onclick="toggleSound()">🔇</button>
+            </div>
+        </div>
+
+        <h1>ВТОРОЙ ЗВОНОК</h1>
+
+        <p>К декабрю 1946 года Европа превратилась в гигантский шпионский полигон, где старые правила игры окончательно перестали действовать. Эпоха «аристократов духа», для которых шпионаж был делом чести, теснилась новой реальностью — технократической властью корпораций и теневых организаций. Старая школа уходила, уступая место холодному расчёту, где человек становился лишь винтиком в системе, а секретная информация — строчкой в балансе активов.</p>
+
+        <img src="images/02.jpeg" alt="Шахматные фигуры" class="img-inline">
+
+        <div class="document">
+            <p><strong>СОВ. СЕКРЕТНО</strong><br>БЕРН, 10 ДЕКАБРЯ 1946<br>ЭКЗ.: 1</p>
+            <p><strong>ТЕМА:</strong> Оценка оперативной обстановки в Берне и сопредельных регионах.</p>
+            <p><strong>ОБСТАНОВКА</strong><br>5 марта 1946 года Черчилль выступил в Фултоне. Речь зафиксировала размежевание позиций США и Великобритании, с одной стороны, и СССР — с другой. Берн остаётся точкой пересечения интересов всех сторон.</p>
+        </div>
+
     </div>
 
     <script>
         function enterSite() {
             document.getElementById('start-screen').style.display = 'none';
             document.getElementById('main-content').style.display = 'block';
+            const video = document.getElementById('promo-video');
+            if (video) {
+                video.muted = false;
+                document.getElementById('sound-toggle').textContent = '🔊';
+            }
         }
+
+        function toggleSound() {
+            const video = document.getElementById('promo-video');
+            const btn = document.getElementById('sound-toggle');
+            if (video.muted) {
+                video.muted = false;
+                btn.textContent = '🔊';
+            } else {
+                video.muted = true;
+                btn.textContent = '🔇';
+            }
+        }
+
+        window.addEventListener('scroll', function() {
+            const scrollY = window.scrollY;
+            if (scrollY > 0) {
+                localStorage.setItem('roman_scroll_pos', scrollY);
+            }
+        });
+
+        window.addEventListener('load', function() {
+            const savedPos = localStorage.getItem('roman_scroll_pos');
+            if (savedPos) {
+                window.scrollTo({ top: parseInt(savedPos), behavior: 'smooth' });
+            }
+        });
     </script>
 
 </body>
