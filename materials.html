@@ -41,15 +41,15 @@ body{
   animation: fadeIn 1.5s ease-out;
 }
 
-.archive-title {
-  font-family: 'Oranienbaum', Georgia, serif;
-  color: #C9A96E;
-  font-size: 2.2rem;
-  text-align: center;
+/* НОВАЯ ПЛАШКА-ЗАГОЛОВОК 71.png ПО ШИРИНЕ ВСЕГО БЛОКА */
+.archive-header-banner {
+  display: block;
+  width: 100%;
+  max-width: 1200px; /* СОВПАДАЕТ С МАКСИМАЛЬНОЙ ШИРИНОЙ КОНТЕЙНЕРА */
+  height: auto;
+  border: 1px solid rgba(201, 169, 110, 0.3);
+  box-shadow: 0 0 50px rgba(201, 169, 110, 0.08);
   margin-bottom: 1rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  z-index: 10;
 }
 
 /* ГЛУХАЯ ПОЛУПРОЗРАЧНАЯ ПОДЛОЖКА-КАРТОЧКА */
@@ -77,7 +77,7 @@ body{
 }
 
 .right-column {
-  flex: 1.9; /* БОЛЬШАЯ КОЛОНКА ПОД ПАПКИ-ДОКУМЕНТЫ */
+  flex: 1.9; /* БОЛЬШАЯ КОЛОНКА ПОД ПАПКИ И ВИДЕОПЛЕЕР */
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -157,15 +157,39 @@ body{
   line-height: 1.4;
 }
 
-/* ВИДЕОПЛЕЕР (ПРОМО) В САМОМ НИЗУ */
+/* УБИРАЕМ СИНЕЕ И ФИОЛЕТОВОЕ ПОДЧЕРКИВАНИЕ ССЫЛОК */
+.sub-btn-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  outline: none;
+}
+.sub-btn-link:focus, .sub-btn-link:active, .sub-btn-link:visited {
+  text-decoration: none;
+  color: inherit;
+}
+.btn-img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid rgba(201, 169, 110, 0.25);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.btn-img:hover {
+  border-color: #C9A96E;
+  box-shadow: 0 0 45px rgba(201, 169, 110, 0.2);
+  transform: scale(1.01);
+}
+
+/* ВИДЕОПЛЕЕР СРАЗУ ПОД ПАПКАМИ */
 .video-section {
   width: 100%;
+  margin-top: 1rem;
 }
 .promo-video-wrap {
   position: relative;
   width: 100%;
-  max-width: 800px;
-  margin: 1rem auto 0;
   background: #0d0c09;
   border: 1px solid #C9A96E;
 }
@@ -201,79 +225,81 @@ body{
 <a class="back-btn" href="index.html">&#8592; Домой</a>
 
 <div class="archive-wrapper">
-  <h1 class="archive-title">Архив материалов дела</h1>
+  <!-- Графическая плашка-заголовок 71.png по ширине всего блока -->
+  <img src="images/71.png" alt="Архив материалов дела" class="archive-header-banner">
   
   <div class="split-layout">
     
-    <!-- ЛЕВАЯ КОЛОНКА (СИНОПСИС БЕЗ ФОРМЫ СВЯЗИ) -->
+    <!-- ЛЕВАЯ КОЛОНКА (АКТУАЛИЗИРОВАННЫЙ И СОКРАЩЕННЫЙ СИНОПСИС) -->
     <div class="left-column">
       <div class="archive-card">
         <div class="section-divider">Краткий синопсис</div>
-        <p class="synopsis-text"><strong>«Второй звонок»</strong> — интеллектуальный шпионский нуар, разворачивающийся в декорациях послевоенной Европы с декабря 1946 по май 1948 года.</p>
-        <p class="synopsis-text">На обломках Второй мировой войны, посреди Швейцарии, превратившейся в транзитный фильтр для вывода нацистских капиталов, сталкиваются две эпохи секретных служб. Время «аристократов духа» уходит. На смену им приходит «Сетка» — безликая коммерческая надстройка, извлекающая прибыль из информации по холодным алгоритмам.</p>
-        <p class="synopsis-text">В центре интриги — «серая папка» Канариса, некогда бесценный компромат, к 1948 году становящийся смертоносным анахронизмом. Герои романа — Алекс, Мастер, Ольга — пешки этой безжалостной системы, проходящие путь от слепого выполнения инструкций к обретению личной свободы.</p>
-        <p class="synopsis-text">«Второй звонок» — это метафора уходящей эпохи. Сигнал, который ждут, но который не всегда случается. Старый мир привык жить по системе шифров, но Майя-Роза уже способна сделать свой шаг дальше — без оглядки, в тишину личной свободы.</p>
+        <p class="synopsis-text"><strong>«Второй звонок»</strong> — интеллектуальный шпионский нуар, разворачивающийся в послевоенной Европе с декабря 1946 по май 1948 года.</p>
+        <p class="synopsis-text">На фоне Швейцарии, ставшей транзитным узлом для нацистских капиталов, сталкиваются уходящая эпоха «аристократов духа» и «Сетка» — новая безликая система, торгующая информацией по холодным алгоритмам. В центре интриги — папка Канариса, некогда бесценный компромат, превратившийся в смертельный груз.</p>
+        <p class="synopsis-text">Это история о фигурах безжалостной игры, выходящих за рамки протоколов ради обретения имени, и о праве человека не ждать сигнала к действию, а просто начать жить дальше — без оглядки.</p>
       </div>
     </div>
     
-    <!-- ПРАВАЯ КОЛОНКА (ИНТЕРАКТИВНЫЕ ПАПКИ-ДОКУМЕНТЫ) -->
-    <div class="bottom-row" style="flex-direction: column; justify-content: flex-start; max-width: 100%;">
-      <!-- Папка 1 -->
-      <a href="materials/note.html" class="sub-btn-link" style="max-width: 100%;">
-        <div class="btn-img" style="background: #11100e; padding: 1.5rem; border: 1px solid rgba(201, 169, 110, 0.25); border-left: 4px solid #C9A96E;">
-          <span class="folder-tag">ОСОБАЯ ПАПКА &middot; СОВ. СЕКРЕТНО</span>
-          <h4 class="folder-title" style="margin: 0.3rem 0;">ДЕЛО № 11/С: Аналитическая записка</h4>
-          <p class="folder-desc">Оценка оперативной обстановки в Берне, транзит активов рейха и операция «Скрепка».</p>
-        </div>
-      </a>
+    <!-- ПРАВАЯ КОЛОНКА (ИНТЕРАКТИВНЫЕ ПАПКИ И ВИДЕОПЛЕЕР СРАЗУ ПОД НИМИ) -->
+    <div class="right-column">
+      <div class="bottom-row" style="display: flex; flex-direction: column; gap: 1.5rem; justify-content: flex-start; max-width: 100%;">
+        <!-- Папка 1 -->
+        <a href="materials/note.html" class="sub-btn-link" style="max-width: 100%;">
+          <div class="btn-img" style="background: #11100e; padding: 1.5rem; border: 1px solid rgba(201, 169, 110, 0.25); border-left: 4px solid #C9A96E;">
+            <span class="folder-tag">ОСОБАЯ ПАПКА &middot; СОВ. СЕКРЕТНО</span>
+            <h4 class="folder-title" style="margin: 0.3rem 0;">ДЕЛО № 11/С: Аналитическая записка</h4>
+            <p class="folder-desc">Оценка оперативной обстановки в Берне, транзит активов рейха и операция «Скрепка».</p>
+          </div>
+        </a>
+        
+        <!-- Папка 2 -->
+        <a href="materials/report.html" class="sub-btn-link" style="max-width: 100%;">
+          <div class="btn-img" style="background: #11100e; padding: 1.5rem; border: 1px solid rgba(201, 169, 110, 0.25); border-left: 4px solid #C9A96E;">
+            <span class="folder-tag">ЛИЧНО ЦЕНТРУ &middot; СОВ. СЕКРЕТНО</span>
+            <h4 class="folder-title" style="margin: 0.3rem 0;">ДЕЛО № 47/Б: Рапорт Мастера</h4>
+            <p class="folder-desc">Детальный отчет о ликвидации Объекта «Аргентинец» на охоте и причинах провала Вальтера.</p>
+          </div>
+        </a>
+        
+        <!-- Папка 3 -->
+        <a href="materials/reference.html" class="sub-btn-link" style="max-width: 100%;">
+          <div class="btn-img" style="background: #11100e; padding: 1.5rem; border: 1px solid rgba(201, 169, 110, 0.25); border-left: 4px solid #C9A96E;">
+            <span class="folder-tag">СПРАВОЧНЫЕ МАТЕРИАЛЫ &middot; ДЛЯ ИЗУЧЕНИЯ</span>
+            <h4 class="folder-title" style="margin: 0.3rem 0;">Исторический комментарий</h4>
+            <p class="folder-desc">Подлинная судьба архива Абвера («папки Канариса»), Парижские мирные договоры и кризис 1948 года.</p>
+          </div>
+        </a>
+        
+        <!-- Папка 4 -->
+        <a href="materials/dossier_characters.html" class="sub-btn-link" style="max-width: 100%;">
+          <div class="btn-img" style="background: #11100e; padding: 1.5rem; border: 1px solid rgba(201, 169, 110, 0.25); border-left: 4px solid #C9A96E;">
+            <span class="folder-tag">ЛИЧНЫЕ ДЕЛА &middot; СЕТКА</span>
+            <h4 class="folder-title" style="margin: 0.3rem 0;">Dramatis Personae: Действующие лица</h4>
+            <p class="folder-desc">Развернутые досье на Алекса, Мастера, Виолетту, Майю-Розу и второстепенных персонажей романа.</p>
+          </div>
+        </a>
+        
+        <!-- Папка 5 -->
+        <a href="materials/literary_essay.html" class="sub-btn-link" style="max-width: 100%;">
+          <div class="btn-img" style="background: #11100e; padding: 1.5rem; border: 1px solid rgba(201, 169, 110, 0.25); border-left: 4px solid #C9A96E;">
+            <span class="folder-tag">ЛИТЕРАТУРОВЕДЧЕСКИЙ ОЧЕРК</span>
+            <h4 class="folder-title" style="margin: 0.3rem 0;">Художественная архитектура и смыслы</h4>
+            <p class="folder-desc">Литературный анализ метафоры «второго звонка», эволюции музыки, кодов и психо-эмоциональной градации.</p>
+          </div>
+        </a>
+      </div>
       
-      <!-- Папка 2 -->
-      <a href="materials/report.html" class="sub-btn-link" style="max-width: 100%;">
-        <div class="btn-img" style="background: #11100e; padding: 1.5rem; border: 1px solid rgba(201, 169, 110, 0.25); border-left: 4px solid #C9A96E;">
-          <span class="folder-tag">ЛИЧНО ЦЕНТРУ &middot; СОВ. СЕКРЕТНО</span>
-          <h4 class="folder-title" style="margin: 0.3rem 0;">ДЕЛО № 47/Б: Рапорт Мастера</h4>
-          <p class="folder-desc">Детальный отчет о ликвидации Объекта «Аргентинец» на охоте и причинах провала Вальтера.</p>
+      <!-- ВИДЕОПЛЕЕР СРАЗУ ПОД ПАПКАМИ -->
+      <div class="video-section archive-card">
+        <div class="section-divider">Промо-видеопрезентация</div>
+        <div class="promo-video-wrap">
+          <video controls loop playsinline>
+            <source src="Промо Второй звонок.mp4" type="video/mp4">
+          </video>
         </div>
-      </a>
-      
-      <!-- Папка 3 -->
-      <a href="materials/reference.html" class="sub-btn-link" style="max-width: 100%;">
-        <div class="btn-img" style="background: #11100e; padding: 1.5rem; border: 1px solid rgba(201, 169, 110, 0.25); border-left: 4px solid #C9A96E;">
-          <span class="folder-tag">СПРАВОЧНЫЕ МАТЕРИАЛЫ &middot; ДЛЯ ИЗУЧЕНИЯ</span>
-          <h4 class="folder-title" style="margin: 0.3rem 0;">Исторический комментарий</h4>
-          <p class="folder-desc">Подлинная судьба архива Абвера («папки Канариса»), Парижские мирные договоры и кризис 1948 года.</p>
-        </div>
-      </a>
-      
-      <!-- Папка 4 -->
-      <a href="materials/dossier_characters.html" class="sub-btn-link" style="max-width: 100%;">
-        <div class="btn-img" style="background: #11100e; padding: 1.5rem; border: 1px solid rgba(201, 169, 110, 0.25); border-left: 4px solid #C9A96E;">
-          <span class="folder-tag">ЛИЧНЫЕ ДЕЛА &middot; СЕТКА</span>
-          <h4 class="folder-title" style="margin: 0.3rem 0;">Dramatis Personae: Действующие лица</h4>
-          <p class="folder-desc">Развернутые досье на Алекса, Мастера, Виолетту, Майю-Розу и второстепенных персонажей романа.</p>
-        </div>
-      </a>
-      
-      <!-- Папка 5 -->
-      <a href="materials/literary_essay.html" class="sub-btn-link" style="max-width: 100%;">
-        <div class="btn-img" style="background: #11100e; padding: 1.5rem; border: 1px solid rgba(201, 169, 110, 0.25); border-left: 4px solid #C9A96E;">
-          <span class="folder-tag">ЛИТЕРАТУРОВЕДЧЕСКИЙ ОЧЕРК</span>
-          <h4 class="folder-title" style="margin: 0.3rem 0;">Художественная архитектура и смыслы</h4>
-          <p class="folder-desc">Литературный анализ метафоры «второго звонка», эволюции музыки, кодов и психо-эмоциональной градации.</p>
-        </div>
-      </a>
+      </div>
     </div>
     
-  </div>
-
-  <!-- ВИДЕОПЛЕЕР (ПРОМО) В САМОМ НИЗУ СТРАНИЦЫ -->
-  <div class="video-section archive-card">
-    <div class="section-divider">Промо-видеопрезентация</div>
-    <div class="promo-video-wrap">
-      <video controls loop playsinline>
-        <source src="Промо Второй звонок.mp4" type="video/mp4">
-      </video>
-    </div>
   </div>
 </div>
 
