@@ -1,0 +1,419 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Архив дела — Второй звонок</title>
+<link rel="icon" href="images/51.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oranienbaum&family=Literatta:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600;6..72,700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:#0b0a08 url('images/62.png') no-repeat center center fixed;
+  background-size: cover;
+  color:#e0d5b0;
+  font-family:'Literatta',Georgia,serif;
+  min-height:100vh;
+  overflow-x:hidden;
+  overflow-y:auto;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:3rem 1rem;
+}
+
+/* КНОПКА «ДОМОЙ» */
+.back-btn{position:fixed;top:1rem;right:1rem;z-index:200;background:rgba(11,10,8,.9);border:1px solid #C9A96E;color:#C9A96E;padding:.5rem 1rem;cursor:pointer;font-family:'Literatta',Georgia,serif;font-size:.85rem;letter-spacing:.08em;transition:.3s;display:block;text-decoration:none}
+.back-btn:hover{background:#C9A96E;color:#0b0a08}
+
+/* ЦЕНТРАЛЬНЫЙ КОНТЕЙНЕР С ПОДЛОЖКОЙ ДЛЯ ЧИТАЕМОСТИ */
+.archive-container {
+  max-width: 880px;
+  width: 100%;
+  background: #0b0a08;
+  padding: 4rem 3.5rem 6rem;
+  box-shadow: 0 0 80px rgba(0,0,0,0.9);
+  border-left: 1px solid rgba(201, 169, 110, 0.08);
+  border-right: 1px solid rgba(201, 169, 110, 0.08);
+  animation: fadeIn 1.5s ease-out;
+}
+
+.archive-title {
+  font-family: 'Oranienbaum', Georgia, serif;
+  color: #C9A96E;
+  font-size: 2.2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* СИНОПСИС */
+.synopsis-text {
+  color: #e0d5b0;
+  font-size: 1.25rem;
+  line-height: 1.8;
+  margin-bottom: 1.8rem;
+  font-weight: 300;
+}
+
+/* ВИДЕОПРЕЗЕНТАЦИЯ (ПРОМО-РОЛИК) */
+.promo-video-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  margin: 3rem auto;
+  background: #0d0c09;
+  border: 1px solid #C9A96E;
+  box-shadow: 0 0 30px rgba(201, 169, 110, 0.05);
+}
+.promo-video-wrap video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* РАЗДЕЛИТЕЛЬНЫЕ ЗАГОЛОВКИ */
+.section-divider {
+  font-family: 'Oranienbaum', Georgia, serif;
+  color: #C9A96E;
+  font-size: 1.5rem;
+  margin: 3.5rem 0 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-bottom: 1px solid rgba(201, 169, 110, 0.15);
+  padding-bottom: 0.5rem;
+}
+
+/* СЕТКА ИНТЕРАКТИВНЫХ ПАПОК */
+.folders-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.folder-card {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background: #11100e;
+  border: 1px solid rgba(201, 169, 110, 0.15);
+  padding: 1.5rem 2rem;
+  text-decoration: none;
+  transition: 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+.folder-card:hover {
+  border-color: #C9A96E;
+  background: #161512;
+  box-shadow: 0 4px 30px rgba(201, 169, 110, 0.08);
+  transform: translateY(-2px);
+}
+
+.folder-icon {
+  font-size: 2.2rem;
+  color: #C9A96E;
+  opacity: 0.7;
+}
+
+.folder-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.folder-tag {
+  font-family: 'Courier New', Courier, monospace;
+  color: #C00000; /* архивный красный гриф */
+  font-weight: bold;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+}
+
+.folder-title {
+  font-family: 'Oranienbaum', Georgia, serif;
+  color: #C9A96E;
+  font-size: 1.25rem;
+  letter-spacing: 0.03em;
+}
+
+.folder-desc {
+  font-size: 0.95rem;
+  color: #8A7E6B;
+  font-weight: 300;
+}
+
+/* ВИНТАЖНАЯ ФОНОТЕКА (ПЛЕЕР) */
+.phonotheque-box {
+  background: #11100e;
+  border: 1px solid rgba(201, 169, 110, 0.2);
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.audio-console {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.track-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid rgba(201, 169, 110, 0.1);
+}
+
+.track-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.track-title {
+  font-size: 1.05rem;
+  color: #e0d5b0;
+}
+
+.track-scene {
+  font-size: 0.85rem;
+  color: #8A7E6B;
+}
+
+.audio-player {
+  background: transparent;
+  outline: none;
+  height: 30px;
+}
+
+/* ШИФРОВКА СВЯЗИ */
+.feedback-box {
+  background: #11100e;
+  border: 1px solid #C9A96E;
+  padding: 2.5rem;
+  margin-top: 4rem;
+  box-shadow: 0 0 40px rgba(201, 169, 110, 0.05);
+}
+.feedback-box h3 {
+  font-family: 'Oranienbaum', Georgia, serif;
+  color: #C9A96E;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+.feedback-box p {
+  color: #8A7E6B;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.feedback-form input, .feedback-form textarea {
+  background: #161512;
+  border: 1px solid rgba(201, 169, 110, 0.25);
+  color: #e0d5b0;
+  font-family: 'Literatta', Georgia, serif;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+.feedback-form input:focus, .feedback-form textarea:focus {
+  border-color: #C9A96E;
+}
+.feedback-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+.form-submit {
+  padding: 0.9rem;
+  background: transparent;
+  border: 1px solid #C9A96E;
+  color: #C9A96E;
+  font-family: 'Literatta', Georgia, serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.form-submit:hover {
+  background: #C9A96E;
+  color: #0b0a08;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(2%) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media(max-width: 900px){
+  .archive-container {
+    padding: 2.5rem 1.5rem 4rem;
+  }
+  .folder-card {
+    gap: 1rem;
+    padding: 1.2rem;
+  }
+}
+</style>
+</head>
+<body oncontextmenu="return false;">
+
+<!-- КНОПКА «ДОМОЙ» -->
+<a class="back-btn" href="index.html">&#8592; На главную</a>
+
+<div class="archive-container">
+  <h1 class="archive-title">Архив материалов дела</h1>
+  
+  <!-- ВВОДНЫЙ СИНОПСИС -->
+  <p class="synopsis-text"><strong>«Второй звонок»</strong> — интеллектуальный шпионский нуар, разворачивающийся в декорациях послевоенной Европы с декабря 1946 по май 1948 года.</p>
+  
+  <p class="synopsis-text">На обломках Второй мировой войны, посреди благополучной Швейцарии, превратившейся в гигантский транзитный фильтр для вывода нацистских капиталов в Латинскую Америку, сталкиваются старая и новая эпохи секретных служб. Время «аристократов духа» уходит. На смену им приходит «Сетка» — безликая технократическая надстройка, извлекающая чистую прибыль из информации по холодным алгоритмам.</p>
+  
+  <p class="synopsis-text">В центре интриги — «серая папка» адмирала Канариса, некогда бесценный компромат, способный шантажировать обе стороны конфликта, но к 1948 году стремительно превращающийся в смертоносный анахронизм. Герои романа — Алекс (Хозяин), Мастер (Апрель), Виолетта (Ольга) — пешки и операторы этой безжалостной системы, проходящие свой путь от слепого следования инструкциям к обретению личной свободы и подлинного имени.</p>
+  
+  <p class="synopsis-text">«Второй звонок» — это метафора уходящей эпохи. Сигнал, который ждут, но который не всегда случается. Старый мир привык жить по системе шифров, но новое поколение в лице Майи-Розы уже способно сделать свой шаг дальше — без оглядки, в абсолютную тишину личной свободы.</p>
+
+  <!-- БЛОК ПРОМО (ВИДЕО) -->
+  <div class="section-divider">Видеопрезентация</div>
+  <div class="promo-video-wrap">
+    <video controls loop playsinline>
+      <source src="Промо Второй звонок.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <!-- ФОНОТЕКА (ПЛЕЙЛИСТ РОМАНА) -->
+  <div class="section-divider">Оперативная фонотека (Саундтрек)</div>
+  <div class="phonotheque-box">
+    <div class="audio-console">
+      
+      <!-- Трек 1: Бах -->
+      <div class="track-item">
+        <div class="track-info">
+          <span class="track-title">И. С. Бах — Гольдберг-вариации (Aria)</span>
+          <span class="track-scene">Сопровождение сцены встречи в Лондоне и поезда до Дувра</span>
+        </div>
+        <audio class="audio-player" controls>
+          <source src="music/bach_goldberg_aria.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+
+      <!-- Трек 2: Дворжак -->
+      <div class="track-item">
+        <div class="track-info">
+          <span class="track-title">А. Дворжак — Симфония № 7 (Вторая часть)</span>
+          <span class="track-scene">Сопровождение финальной примерки в салоне Портного</span>
+        </div>
+        <audio class="audio-player" controls>
+          <source src="music/dvorak_symphony7_2.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+
+      <!-- Трек 3: Вивальди -->
+      <div class="track-item">
+        <div class="track-info">
+          <span class="track-title">А. Вивальди — Времена года (Зима)</span>
+          <span class="track-scene">Сопровождение сцены со скрипачом на улицах Женевы</span>
+        </div>
+        <audio class="audio-player" controls>
+          <source src="music/vivaldi_winter.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+
+      <!-- Трек 4: Гленн Миллер -->
+      <div class="track-item">
+        <div class="track-info">
+          <span class="track-title">Гленн Миллер — Серенада лунного света</span>
+          <span class="track-scene">Сопровождение сцены отчета в мастерской в Берне</span>
+        </div>
+        <audio class="audio-player" controls>
+          <source src="music/glenn_miller_moonlight.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ИНТЕРАКТИВНЫЕ ПАПКИ С СУБСТРАНИЦАМИ -->
+  <div class="section-divider">Рассекреченные материалы дела</div>
+  <div class="folders-grid">
+
+    <!-- Папка 1: Аналитическая записка -->
+    <a href="materials/analytical-note.html" class="folder-card">
+      <div class="folder-icon">📂</div>
+      <div class="folder-info">
+        <span class="folder-tag">ОСОБАЯ ПАПКА &middot; СОВ. СЕКРЕТНО</span>
+        <span class="folder-title">ДЕЛО № 11/С: Аналитическая записка от 10.12.1946</span>
+        <span class="folder-desc">Оценка оперативной обстановки в Берне, транзит нацистских активов и операция «Скрепка».</span>
+      </div>
+    </a>
+
+    <!-- Папка 2: Рапорт Мастера -->
+    <a href="materials/report.html" class="folder-card">
+      <div class="folder-icon">📂</div>
+      <div class="folder-info">
+        <span class="folder-tag">ЛИЧНО ЦЕНТРУ &middot; СОВ. СЕКРЕТНО</span>
+        <span class="folder-title">ДЕЛО № 47/Б: Оперативный рапорт Мастера от 05.02.1947</span>
+        <span class="folder-desc">Обстоятельства провала Вальтера и результаты ликвидации Объекта «Аргентинец» на охоте.</span>
+      </div>
+    </a>
+
+    <!-- Папка 3: Историческая справка -->
+    <a href="materials/reference.html" class="folder-card">
+      <div class="folder-icon">📂</div>
+      <div class="folder-info">
+        <span class="folder-tag">СПРАВОЧНЫЕ МАТЕРИАЛЫ &middot; ДЛЯ ИЗУЧЕНИЯ</span>
+        <span class="folder-title">Исторический комментарий о «папке Канариса»</span>
+        <span class="folder-desc">Подлинная судьба архива Абвера, Парижские мирные договоры и кризис активов в Швейцарии.</span>
+      </div>
+    </a>
+
+    <!-- Папка 4: Действующие лица -->
+    <a href="materials/dossier_characters.html" class="folder-card">
+      <div class="folder-icon">📂</div>
+      <div class="folder-info">
+        <span class="folder-tag">ЛИЧНЫЕ ДЕЛА &middot; СЕТКА</span>
+        <span class="folder-title">Dramatis Personae: Действующие лица романа</span>
+        <span class="folder-desc">Подробное досье на Алекса, Мастера, Марту, Виолетту, Майю-Розу и второстепенных героев.</span>
+      </div>
+    </a>
+
+    <!-- Папка 5: Архитектура и смыслы -->
+    <a href="materials/literary_essay.html" class="folder-card">
+      <div class="folder-icon">📂</div>
+      <div class="folder-info">
+        <span class="folder-tag">ЛИТЕРАТУРОВЕДЧЕСКИЙ ОЧЕРК</span>
+        <span class="folder-title">Художественная архитектура и этический месседж</span>
+        <span class="folder-desc">Анализ двойного дна текста, эволюции музыки, обманных концовок и метафоры «второго звонка».</span>
+      </div>
+    </a>
+
+  </div>
+
+  <!-- ФОРМА ОБРАТНОЙ СВЯЗИ -->
+  <div class="feedback-box">
+    <h3>Экстренный канал связи в Центр</h3>
+    <p>Направьте ваше оперативное донесение (отзыв, рецензию) напрямую куратору проекта. Канал связи зашифрован.</p>
+    <form class="feedback-form" action="https://formspree.io/f/mgojzbba" method="POST">
+      <input type="text" name="agent_name" placeholder="Ваш оперативный псевдоним / Имя" required>
+      <input type="email" name="email" placeholder="Канал обратной связи (Ваша эл. почта)" required>
+      <textarea name="message" placeholder="Содержание донесения (Ваш отзыв)" required></textarea>
+      <button type="submit" class="form-submit">Передать по каналу связи</button>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>
