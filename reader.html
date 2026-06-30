@@ -7,6 +7,7 @@ layout: null
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Второй звонок — Дмитрий Ильин</title>
+<link class="foreign" rel="icon" href="images/51.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oranienbaum&family=Literatta:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600;6..72,700&display=swap" rel="stylesheet">
@@ -182,11 +183,6 @@ body{
     <main class="content">
       <div class="content-inner slide-up">
 
-        <!-- ЗАГОЛОВОК КНИГИ -->
-        <h1 class="novel-title">ВТОРОЙ ЗВОНОК</h1>
-        <p class="novel-author">ДМИТРИЙ ИЛЬИН</p>
-        <p class="novel-sub">ИНТЕЛЛЕКТУАЛЬНЫЙ ШПИОНСКИЙ НУАР &middot; ДЕКАБРЬ 1946 — МАЙ 1948</p>
-
         <!-- АВТОМАТИЧЕСКАЯ ПОДГРУЗКА ВСЕХ ГЛАВ ИЗ ПАПКИ _chapters -->
         {% for ch in sorted_chapters %}
           <section data-chapter-idx="{{ ch.idx }}">
@@ -202,7 +198,7 @@ body{
         <!-- ФОРМА ОБРАТНОЙ СВЯЗИ В КОНЦЕ ЧТЕНИЯ -->
         <div class="feedback-box">
           <h3>Связаться с автором</h3>
-          <p>Вы можете направить отзыв, рецензию или сообщение автоу романа. Ваше сообщение будет доставлено конфиденциально.</p>
+          <p>Вы можете направить отзыв, рецензию или сообщение автору романа. Ваше сообщение будет доставлено конфиденциально.</p>
           <form class="feedback-form" action="https://formspree.io/f/mgojzbba" method="POST">
             <input type="text" name="name" placeholder="Ваше имя или псевдоним" required>
             <input type="email" name="email" placeholder="Ваша электронная почта для связи" required>
@@ -282,7 +278,6 @@ function toggleSidebar() {
     hamburger.innerHTML = sidebarOpen ? '✕' : '☰';
 }
 
-// НАВИГАЦИЯ ПО ГЛАВАМ
 function scrollToChapter(idx) {
     var el = document.querySelector('[data-chapter-idx="' + idx + '"]');
     if (el) {
