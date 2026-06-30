@@ -7,7 +7,6 @@ layout: null
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Второй звонок — Дмитрий Ильин</title>
-<meta name="description" content="Интеллектуальный шпионский нуар. Декабрь 1946 — Май 1948.">
 <link rel="icon" href="images/51.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,60 +36,57 @@ body{
   max-width: 900px;
   width: 100%;
   z-index: 10;
-  transform: translateY(-5%); /* СМЕЩАЕМ КАРТИНКУ И КНОПКИ ЧУТЬ НАВЕРХ */
+  transform: translateY(-5%); /* СМЕЩАЕМ ВСЮ КОМПОЗИЦИЮ ЧУТЬ НАВЕРХ */
   animation: fadeIn 1.8s ease-out;
 }
 
-/* ПЛАШКА С НАЗВАНИЕМ */
+/* ПЛАШКА С НАЗВАНИЕМ КНИГИ */
 .main-banner {
   max-width: 100%;
   height: auto;
   border: 1px solid rgba(201, 169, 110, 0.3);
   box-shadow: 0 0 70px rgba(201, 169, 110, 0.08);
   transition: box-shadow 0.5s ease;
+  margin-bottom: 2rem; /* Небольшой зазор перед главной кнопкой */
 }
 .main-banner:hover {
   box-shadow: 0 0 90px rgba(201, 169, 110, 0.15);
 }
 
-/* БЛОК КНОПОК */
-.button-group {
-  margin-top: 2.5rem;
+/* КНОПКИ-ИЗОБРАЖЕНИЯ */
+.btn-img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid rgba(201, 169, 110, 0.25);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.btn-img:hover {
+  border-color: #C9A96E;
+  box-shadow: 0 0 45px rgba(201, 169, 110, 0.2);
+  transform: scale(1.02);
+}
+
+/* ССЫЛКА ДЛЯ ГЛАВНОЙ КНОПКИ */
+.main-btn-link {
+  display: block;
+  width: 100%;
+  max-width: 500px; /* Ограничиваем максимальную ширину кнопки "Ознакомиться с текстом" */
+  margin-bottom: 2rem; /* Зазор перед нижним рядом */
+}
+
+/* НИЖНИЙ РЯД ИЗ ТРЕХ КНОПОК */
+.bottom-row {
   display: flex;
-  gap: 1.2rem;
-  flex-wrap: wrap;
+  gap: 1.5rem;
   justify-content: center;
   width: 100%;
 }
-
-.nav-btn {
-  padding: 0.9rem 1.8rem;
-  background: rgba(11, 10, 8, 0.6); /* Полупрозрачный фон, чтобы сквозь него слегка дышал дым */
-  border: 1px solid #C9A96E;
-  color: #C9A96E;
-  font-family: 'Literatta', Georgia, serif;
-  font-size: 0.9rem;
-  letter-spacing: 0.12em;
-  cursor: pointer;
-  transition: 0.3s ease;
-  text-transform: uppercase;
-  text-decoration: none;
-  white-space: nowrap;
-}
-.nav-btn:hover {
-  background: #C9A96E;
-  color: #0b0a08;
-}
-
-/* ФУТЕР */
-.footer {
-  position: absolute;
-  bottom: 2rem;
-  text-align: center;
-  color: #8A7E6B;
-  font-size: 0.8rem;
-  letter-spacing: 0.05em;
-  z-index: 10;
+.sub-btn-link {
+  display: block;
+  flex: 1;
+  max-width: 240px; /* Чтобы все три нижние кнопки были одинаковыми и компактными */
 }
 
 @keyframes fadeIn {
@@ -99,42 +95,49 @@ body{
 }
 
 @media(max-width: 768px) {
-  .button-group {
+  .main-container {
+    padding: 1rem;
+    overflow-y: auto;
+  }
+  .bottom-row {
     flex-direction: column;
-    width: 100%;
-    padding: 0 1.5rem;
+    align-items: center;
     gap: 1rem;
   }
-  .nav-btn {
+  .main-btn-link, .sub-btn-link {
     width: 100%;
-    text-align: center;
-    padding: 0.8rem;
+    max-width: 100%;
   }
   body {
-    overflow-y: auto; /* На маленьких экранах разрешаем прокрутку, если кнопки не влезают */
+    overflow-y: auto; /* На телефонах разрешаем прокрутку, если кнопки не влезают в экран */
   }
 }
 </style>
 </head>
 <body>
 
-<!-- ГЛАВНЫЙ КОНТЕНТ -->
 <div class="main-container">
-  <!-- Картинка 63.png по центру -->
+  <!-- Главная плашка 63.png по центру -->
   <img src="images/63.png" alt="Второй звонок — Дмитрий Ильин" class="main-banner">
   
-  <div class="button-group">
-    <!-- Кнопки входа в архитектурные разделы -->
-    <a href="reader.html" class="nav-btn">Ознакомиться с текстом</a>
-    <a href="materials.html" class="nav-btn">Архив дела</a>
-    <a href="foreigners.html" class="nav-btn">For Foreigners</a>
-    <a href="laboratory.html" class="nav-btn">Лаборатория проекта</a>
+  <!-- Главная кнопка "Ознакомиться с текстом" сразу под плашкой -->
+  <a href="reader.html" class="main-btn-link">
+    <img src="images/64.png" alt="Ознакомиться с текстом" class="btn-img">
+  </a>
+  
+  <!-- Нижний ряд из трех одинаковых кнопок -->
+  <div class="bottom-row">
+    <a href="materials.html" class="sub-btn-link">
+      <img src="images/65.png" alt="Архив дела" class="btn-img">
+    </a>
+    <a href="foreigners.html" class="sub-btn-link">
+      <img src="images/66.png" alt="For Foreigners" class="btn-img">
+    </a>
+    <a href="laboratory.html" class="sub-btn-link">
+      <img src="images/67.png" alt="Лаборатория" class="btn-img">
+    </a>
   </div>
 </div>
-
-<footer class="footer">
-  <p>© Дмитрий Ильин. Все права защищены. Свидетельство № 226061100096</p>
-</footer>
 
 </body>
 </html>
