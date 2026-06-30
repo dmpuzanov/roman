@@ -7,7 +7,6 @@ layout: null
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Второй звонок — Дмитрий Ильин</title>
-<meta name="description" content="Интеллектуальный шпионский нуар. Декабрь 1946 — Май 1948.">
 <link rel="icon" href="images/51.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +16,8 @@ layout: null
 html{scroll-behavior:smooth}
 
 body{
-  background:#0b0a08;
+  background:#0b0a08 url('images/69.png') no-repeat center center fixed; /* НОВЫЙ ТЕМНЫЙ ФОН */
+  background-size: cover;
   color:#e0d5b0;
   font-family:'Literatta',Georgia,serif;
   min-height:100vh;
@@ -28,18 +28,7 @@ body{
   user-select: none;
 }
 
-#cover{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;animation:fadeIn 1.5s ease-out}
-#cover img{max-width:100%;max-height:85vh;border:2px solid #C9A96E;box-shadow:0 0 80px rgba(201,169,110,.12);transition:box-shadow .4s}
-#cover img:hover{box-shadow:0 0 100px rgba(201,169,110,.2)}
-.enter-btn{margin-top:2.5rem;padding:1rem 3rem;background:0 0;border:1px solid #C9A96E;color:#C9A96E;font-family:'Literatta',Georgia,serif;font-size:1.05rem;letter-spacing:.15em;cursor:pointer;transition:.3s;text-transform:uppercase}
-.enter-btn:hover{background:#C9A96E;color:#0b0a08}
-
-.video-wrap{position:relative;width:100%;max-width:800px;margin:2rem auto 3rem;background:#0d0c09;border:1px solid #C9A96E;overflow:hidden}
-.video-wrap video{display:block;width:100%;height:auto}
-.snd-btn{position:absolute;bottom:12px;right:12px;background:rgba(11,10,8,.8);border:1px solid #C9A96E;color:#C9A96E;font-size:1.2rem;padding:4px 12px;cursor:pointer;transition:.3s;z-index:10}
-.snd-btn:hover{background:#C9A96E;color:#0b0a08}
-
-#reader{display:none}
+#reader{display:block} /* ОТКРЫВАЕТСЯ СРАЗУ, БЕЗ ЛИШНИХ КНОПОК ВХОДА */
 .main-layout{display:flex;min-height:100vh}
 
 .sidebar{position:fixed;left:0;top:0;bottom:0;width:280px;background:#141419;border-right:1px solid rgba(201,169,110,.15);overflow-y:auto;z-index:100;padding:2rem 0;transition:transform .35s}
@@ -77,8 +66,10 @@ body{
 
 .img-inline{max-width:100%;height:auto;margin:2.5rem auto;display:block;border:1px solid rgba(201,169,110,.15);box-shadow:0 4px 20px rgba(0,0,0,.4)}
 
-.back-btn{position:fixed;top:1rem;right:1rem;z-index:200;background:rgba(11,10,8,.9);border:1px solid #C9A96E;color:#C9A96E;padding:.5rem 1rem;cursor:pointer;font-family:'Literatta',Georgia,serif;font-size:.85rem;letter-spacing:.08em;transition:.3s;display:none}
+/* КНОПКА «ДОМОЙ» */
+.back-btn{position:fixed;top:1rem;right:1rem;z-index:200;background:rgba(11,10,8,.9);border:1px solid #C9A96E;color:#C9A96E;padding:.5rem 1rem;cursor:pointer;font-family:'Literatta',Georgia,serif;font-size:.85rem;letter-spacing:.08em;transition:.3s;display:block;text-decoration:none}
 .back-btn:hover{background:#C9A96E;color:#0b0a08}
+
 .hamburger{position:fixed;top:1rem;left:1rem;z-index:200;background:rgba(11,10,8,.9);border:1px solid #C9A96E;color:#C9A96E;padding:.5rem .75rem;cursor:pointer;font-size:1.1rem;transition:.3s;display:none}
 .hamburger:hover{background:#C9A96E;color:#0b0a08}
 .top-btn{position:fixed;bottom:2rem;right:2rem;z-index:150;background:rgba(11,10,8,.9);border:1px solid #C9A96E;color:#C9A96E;padding:.6rem 1.2rem;cursor:pointer;font-family:'Literatta',Georgia,serif;font-size:.85rem;letter-spacing:.08em;transition:.3s;opacity:0;pointer-events:none}
@@ -119,74 +110,6 @@ body{
   letter-spacing: 0.15em;
 }
 
-/* ФОРМА ОБРАТНОЙ СВЯЗИ */
-.feedback-box {
-  background: #11100e;
-  border: 1px solid #C9A96E;
-  padding: 2.5rem;
-  margin-top: 4rem;
-  box-shadow: 0 0 40px rgba(201, 169, 110, 0.05);
-}
-.feedback-box h3 {
-  font-family: 'Oranienbaum', Georgia, serif;
-  color: #C9A96E;
-  font-size: 1.6rem;
-  margin-bottom: 0.5rem;
-  text-align: center;
-  letter-spacing: 0.05em;
-}
-.feedback-box p {
-  color: #8A7E6B;
-  text-align: center;
-  margin-bottom: 2rem;
-  font-size: 0.95rem;
-}
-.feedback-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-}
-.feedback-form input, .feedback-form textarea {
-  background: #161512;
-  border: 1px solid rgba(201, 169, 110, 0.25);
-  color: #e0d5b0;
-  font-family: 'Literatta', Georgia, serif;
-  padding: 0.8rem 1rem;
-  font-size: 1rem;
-  outline: none;
-  transition: border-color 0.3s;
-}
-.feedback-form input:focus, .feedback-form textarea:focus {
-  border-color: #C9A96E;
-}
-.feedback-form textarea {
-  resize: vertical;
-  min-height: 120px;
-}
-.form-submit {
-  padding: 0.9rem;
-  background: transparent;
-  border: 1px solid #C9A96E;
-  color: #C9A96E;
-  font-family: 'Literatta', Georgia, serif;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  cursor: pointer;
-  transition: 0.3s;
-}
-.form-submit:hover {
-  background: #C9A96E;
-  color: #0b0a08;
-}
-
-/* === ФУТЕР === */
-.footer{border-top:1px solid rgba(201,169,110,.15);padding:2rem 0;margin-top:4rem;text-align:center;color:#8A7E6B;font-size:.85rem;font-family:'Literatta',Georgia,serif;letter-spacing:.05em}
-.footer .age{color:#C9A96E;font-weight:700;font-size:1rem;margin-bottom:.5rem}
-
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-.slide-up{animation:slideUp .8s ease-out}
-
 @media(max-width:1150px) {
   .chronometer { display: none; }
 }
@@ -202,8 +125,6 @@ body{
   .document{padding:1.2rem 1rem;font-size:.9rem}
 }
 @media(max-width:500px){
-  #cover img{max-height:60vh}
-  .enter-btn{padding:.8rem 2rem;font-size:.9rem}
   .content-inner{padding:1.5rem 1rem 3rem}
   .novel-text{font-size:1rem;line-height:1.6}
 }
@@ -219,14 +140,10 @@ body{
   <div class="chrono-location" id="chronoLoc">—</div>
 </div>
 
-<div id="cover">
-  <!-- ГОРИЗОНТАЛЬНАЯ ПЛАШКА -->
-  <img src="images/51.png" alt="Второй звонок">
-  <button class="enter-btn" onclick="enterSite()">Ознакомиться с материалами</button>
-</div>
-
 <div id="reader">
-  <button class="back-btn" onclick="backToCover()">&#8592; Обложка</button>
+  <!-- КНОПКА «ДОМОЙ» ВЕСТ К INDEX.HTML -->
+  <a class="back-btn" href="index.html">&#8592; Домой</a>
+  
   <button class="hamburger" id="hamburger" onclick="toggleSidebar()">&#9776;</button>
   <button class="top-btn" id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593; Наверх</button>
   <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
@@ -244,19 +161,19 @@ body{
         {% endif %}
       {% endfor %}
       
-      <!-- РАЗДЕЛ МАТЕРИАЛЫ ДЕЛА -->
-      <button class="sb-item" data-idx="26" style="color: #C9A96E; font-weight: bold;">Материалы дела</button>
+      <!-- КРОСС-НАВИГАЦИЯ НА ДРУГИЕ РАЗДЕЛЫ -->
+      <div style="border-top: 1px solid rgba(201, 169, 110, 0.15); margin-top: 1.5rem; padding-top: 1rem;">
+        <a class="sb-item" href="index.html" style="color: #C9A96E; text-decoration: none;">← Главная страница</a>
+        <a class="sb-item" href="materials.html" style="color: #C9A96E; text-decoration: none;">Архив дела</a>
+        <a class="sb-item" href="foreigners.html" style="color: #C9A96E; text-decoration: none;">For Foreigners</a>
+        <a class="sb-item" href="laboratory.html" style="color: #C9A96E; text-decoration: none;">Лаборатория проекта</a>
+      </div>
     </nav>
     <main class="content">
       <div class="content-inner slide-up">
 
-        <!-- КИНО В НАЧАЛЕ ЧТЕНИЯ -->
-        <div class="video-wrap">
-          <video id="vid" muted autoplay loop playsinline>
-            <source src="Промо Второй звонок.mp4" type="video/mp4">
-          </video>
-          <button class="snd-btn" id="sndBtn" onclick="toggleSound()">&#128263;</button>
-        </div>
+        <!-- ШАХМАТЫ НА СТАРТЕ ЧТЕНИЯ -->
+        <img src="images/02.jpeg" alt="Второй звонок" class="img-inline" style="margin-top: 0; margin-bottom: 3rem;">
 
         <!-- ЗАГОЛОВОК КНИГИ -->
         <h1 class="novel-title">ВТОРОЙ ЗВОНОК</h1>
@@ -275,59 +192,6 @@ body{
           </section>
         {% endfor %}
 
-        <!-- ===== МАТЕРИАЛЫ ДЕЛА ===== -->
-        <section data-chapter-idx="26">
-          <h2 class="chapter-heading" id="chapter-26">Материалы дела</h2>
-          
-          <div class="document">
-            <p class="doc-line stamp">СОВЕРШЕННО СЕКРЕТНО</p>
-            <p class="doc-line">АНАЛИТИЧЕСКАЯ ЗАПИСКА № 11/С</p>
-            <p class="doc-line">БЕРН, 10 ДЕКАБРЯ 1946 &middot; ЭКЗ.: 1</p>
-            <p class="doc-line dots">...</p>
-            <p class="doc-line">1. ОБСТАНОВКА</p>
-            <p class="doc-line">5 марта 1946 года Черчилль выступил в Фултоне. В речи зафиксировано размежевание позиций США и Великобритании, с одной стороны, и СССР — с другой. Оперативная информация, поступавшая с 1945 года, подтверждает: противостояние между бывшими союзниками по антигитлеровской коалиции перешло в открытую фазу.</p>
-            <p class="doc-line">Берн, сохраняя нейтралитет, является точкой пересечения интересов всех сторон. Наблюдается активизация дипломатических и разведывательных миссий.</p>
-            <p class="doc-line">2. ОПЕРАТИВНАЯ ОЦЕНКА ПО НАПРАВЛЕНИЯМ</p>
-            <p class="doc-line">2.1. Американское направление</p>
-            <p class="doc-line">С 3 сентября 1946 года действует операция «Пэйперклип». Цель — привлечение немецких и австрийских специалистов в США и недопущение их перехода в СССР. Программа санкционирует вербовку до 1000 специалистов с предоставлением долгосрочных контрактов и возможностью переезда семей.</p>
-            <p class="doc-line">Агентурные данные подтверждают, что к настоящему моменту не менее 180 учёных получили от США контракты, их семьи перевезены. Конечная численность участников: не менее 1500 человек.</p>
-            <p class="doc-line">Вывод: США выстраивают технологическое превосходство, используя кадровый потенциал побеждённой Германии. Берн — один из транзитных узлов для переправки этих специалистов.</p>
-            <p class="doc-line">2.5. Аргентинское направление</p>
-            <p class="doc-line">С января 1946 года Аргентина стала одним из основных центров приёма бывших нацистских функционеров. По агентурным данным до 5000 бывших нацистских военных преступников осели в Аргентине.</p>
-            <p class="doc-line">Имеются документальные подтверждения перевода личного состояния Германа Геринга в Аргентину через Швайцербанкферайн в Женеве — 20 миллионов долларов.</p>
-            <p class="doc-line">Вывод: Аргентина целенаправленно принимает скомпрометированных лиц и аккумулирует перемещённые активы, используя немецких специалистов для развития национальной промышленности.</p>
-            <p class="doc-line">2.6. Швейцарский транзит</p>
-            <p class="doc-line">Швейцария остаётся основным коридором для вывода капиталов бывшего рейха, транзита скомпрометированных лиц и легализации активов через банковскую систему.</p>
-            <p class="doc-line">По имеющимся данным, до 9000 бывших нацистских функционеров бежали в Южную Америку через маршруты, проходившие в том числе через Швейцарию.</p>
-            <p class="doc-line">3. ВЫВОДЫ ДЛЯ СЕТКИ</p>
-            <p class="doc-line">Приоритетные направления: фиксация маршрутов кадрового трафика немецких граждан в США и Аргентину, контроль транзита активов через швейцарские банки, мониторинг советской активности в Карибском регионе и блокировка позиций Аргентины.</p>
-            <p class="doc-line">ЦЕНТР</p>
-          </div>
-
-          <h3 class="chapter-heading">Исторический комментарий</h3>
-          <p class="novel-text">Настоящие сведения содержат документальные факты о ключевых международных событиях 1943–1948 годов, упоминаемых в романе.</p>
-          
-          <p class="novel-text"><strong>1. Папка Канариса (1943 год): пик ценности.</strong> В 1943 году адмирал Вильгельм Канарис, глава Абвера, осознавая неизбежность поражения Германии, создал так называемую «серую папку» — досье, содержащее списки немецких активов, вывезенных в Швейцарию, коды банковских счетов, а также доказательства тайных переговоров. Папка позволяла владельцу шантажировать любую из сторон конфликта и служила идеальным «страховым полисом».</p>
-          
-          <p class="novel-text"><strong>2. Нюрнбергские процессы (1945–1949) и Парижские договоры (1947): девальвация.</strong> К концу 1946 года папка начала стремительно терять ценность. Нюрнбергские процессы сделали информацию о преступлениях публичной, а Парижские мирные договоры (10 февраля 1947) окончательно подвели черту под войной. Обязательная выдача военных преступников превратила папку из инструмента власти в смертельный груз для владельца.</p>
-          
-          <p class="novel-text"><strong>3. Кризис вокруг немецких активов в Швейцарии (май 1948 года).</strong> 11 мая 1948 года США, Великобритания и Франция вручили Швейцарии ноту с требованием ликвидировать немецкие активы на её территории (удерживалось от 250 до 750 млн долларов). Папка со списками счетов могла позволить союзникам конфисковать миллиарды, но спор затянулся, и окончательное урегулирование произошло только в 1952–1956 годах.</p>
-
-          <p class="novel-text">К моменту, когда Майя-Роза открывает ячейку в цюрихском банке (весна 1948 года), папка полностью обесценилась. Творческий замысел романа «Второй звонок» использует папку Канариса как метафору уходящей эпохи «аристократов духа». На смену тайным играм пришли трибуналы и холодный расчет корпораций.</p>
-
-          <!-- ФОРМА ОБРАТНОЙ СВЯЗИ -->
-          <div class="feedback-box">
-            <h3>Связаться с автором</h3>
-            <p>Вы можете направить отзыв, рецензию или сообщение автору романа. Ваше сообщение будет конфиденциальным.</p>
-            <form class="feedback-form" action="https://formspree.io/f/mgojzbba" method="POST">
-              <input type="text" name="name" placeholder="Ваше имя или псевдоним" required>
-              <input type="email" name="email" placeholder="Ваша электронная почта для связи" required>
-              <textarea name="message" placeholder="Текст вашего сообщения" required></textarea>
-              <button type="submit" class="form-submit">Отправить сообщение</button>
-            </form>
-          </div>
-        </section>
-
         <!-- ===== ФУТЕР ===== -->
         <footer class="footer">
           <p class="age">⚠️ 18+</p>
@@ -339,8 +203,6 @@ body{
     </main>
   </div>
 </div>
-
-<!-- ЗДЕСЬ МОЖНО ВСТАВИТЬ КОД ЯНДЕКС МЕТРИКИ -->
 
 <script>
 // === ДАННЫЕ ДЛЯ ХРОНОГРАФА ===
@@ -375,8 +237,6 @@ var chronoData = {
     "26": { date: "1943 — 1948", loc: "АРХИВЫ" }
 };
 
-var vid = document.getElementById('vid');
-var sndBtn = document.getElementById('sndBtn');
 var sidebar = document.getElementById('sidebar');
 var overlay = document.getElementById('overlay');
 var progress = document.getElementById('progress');
@@ -395,27 +255,6 @@ document.addEventListener('keydown', function(e) {
         return false;
     }
 });
-
-function enterSite() {
-    document.getElementById('cover').style.display = 'none';
-    document.getElementById('reader').style.display = 'block';
-    vid.muted = false;
-    sndBtn.textContent = '🔊';
-}
-
-function backToCover() {
-    document.getElementById('reader').style.display = 'none';
-    document.getElementById('cover').style.display = 'flex';
-    vid.pause();
-    vid.currentTime = 0;
-    vid.muted = true;
-    sndBtn.textContent = '🔇';
-}
-
-function toggleSound() {
-    vid.muted = !vid.muted;
-    sndBtn.textContent = vid.muted ? '🔇' : '🔊';
-}
 
 function toggleSidebar() {
     sidebarOpen = !sidebarOpen;
@@ -478,8 +317,6 @@ window.addEventListener('scroll', function() {
 window.addEventListener('load', function() {
     var s = localStorage.getItem('vz_scroll');
     if (s) {
-        document.getElementById('reader').style.display = 'block';
-        document.getElementById('cover').style.display = 'none';
         setTimeout(function() {
             window.scrollTo({ top: parseInt(s), behavior: 'smooth' });
         }, 100);
