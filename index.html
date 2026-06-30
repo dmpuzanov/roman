@@ -19,7 +19,8 @@ body{
   color:#e0d5b0;
   font-family:'Literatta',Georgia,serif;
   min-height:100vh;
-  overflow:hidden;
+  overflow-x:hidden;
+  overflow-y:auto; /* РАЗРЕШАЕМ ПРОКРУТКУ ПО УМОЛЧАНИЮ */
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -32,22 +33,23 @@ body{
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 3rem 2rem;
   max-width: 900px;
   width: 100%;
   z-index: 10;
-  transform: translateY(-5%); /* СМЕЩАЕМ ВСЮ КОМПОЗИЦИЮ ЧУТЬ НАВЕРХ */
+  transform: translateY(-2%); /* СЛЕГКА ПРИПОДНИМАЕМ ДЛЯ БАЛАНСА */
   animation: fadeIn 1.8s ease-out;
 }
 
 /* ПЛАШКА С НАЗВАНИЕМ КНИГИ */
 .main-banner {
   max-width: 100%;
+  width: 680px; /* ОГРАНИЧИЛИ МАКСИМАЛЬНУЮ ШИРИНУ ПЛАШКИ */
   height: auto;
   border: 1px solid rgba(201, 169, 110, 0.3);
   box-shadow: 0 0 70px rgba(201, 169, 110, 0.08);
   transition: box-shadow 0.5s ease;
-  margin-bottom: 2rem; /* Небольшой зазор перед главной кнопкой */
+  margin-bottom: 1.8rem;
 }
 .main-banner:hover {
   box-shadow: 0 0 90px rgba(201, 169, 110, 0.15);
@@ -72,8 +74,8 @@ body{
 .main-btn-link {
   display: block;
   width: 100%;
-  max-width: 500px; /* Ограничиваем максимальную ширину кнопки "Ознакомиться с текстом" */
-  margin-bottom: 2rem; /* Зазор перед нижним рядом */
+  max-width: 340px; /* УМЕНЬШИЛИ ГЛАВНУЮ КНОПКУ ДО 340px */
+  margin-bottom: 1.8rem;
 }
 
 /* НИЖНИЙ РЯД ИЗ ТРЕХ КНОПОК */
@@ -86,18 +88,17 @@ body{
 .sub-btn-link {
   display: block;
   flex: 1;
-  max-width: 240px; /* Чтобы все три нижние кнопки были одинаковыми и компактными */
+  max-width: 160px; /* УМЕНЬШИЛИ БОКОВЫЕ КНОПКИ ДО 160px */
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-3%) scale(0.98); }
-  to { opacity: 1; transform: translateY(-5%) scale(1); }
+  from { opacity: 0; transform: translateY(-1%) scale(0.98); }
+  to { opacity: 1; transform: translateY(-2%) scale(1); }
 }
 
 @media(max-width: 768px) {
   .main-container {
-    padding: 1rem;
-    overflow-y: auto;
+    padding: 2rem 1.5rem;
   }
   .bottom-row {
     flex-direction: column;
@@ -106,26 +107,23 @@ body{
   }
   .main-btn-link, .sub-btn-link {
     width: 100%;
-    max-width: 100%;
-  }
-  body {
-    overflow-y: auto; /* На телефонах разрешаем прокрутку, если кнопки не влезают в экран */
+    max-width: 280px; /* На мобильных центрируем по единой ширине */
   }
 }
 </style>
 </head>
-<body>
+<body oncontextmenu="return false;">
 
 <div class="main-container">
   <!-- Главная плашка 63.png по центру -->
   <img src="images/63.png" alt="Второй звонок — Дмитрий Ильин" class="main-banner">
   
-  <!-- Главная кнопка "Ознакомиться с текстом" сразу под плашкой -->
+  <!-- Главная кнопка сразу под плашкой -->
   <a href="reader.html" class="main-btn-link">
     <img src="images/64.png" alt="Ознакомиться с текстом" class="btn-img">
   </a>
   
-  <!-- Нижний ряд из трех одинаковых кнопок -->
+  <!-- Нижний ряд из трех кнопок -->
   <div class="bottom-row">
     <a href="materials.html" class="sub-btn-link">
       <img src="images/65.png" alt="Архив дела" class="btn-img">
