@@ -15,7 +15,8 @@ layout: null
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{
-  background:#0b0a08;
+  background:#0b0a08 url('images/62.png') no-repeat center center fixed;
+  background-size: cover;
   color:#e0d5b0;
   font-family:'Literatta',Georgia,serif;
   min-height:100vh;
@@ -24,28 +25,6 @@ body{
   flex-direction:column;
   align-items:center;
   justify-content:center;
-}
-
-/* ФОНОВОЕ ВИДЕО */
-.bg-video {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  z-index: -100;
-  transform: translateX(-50%) translateY(-50%);
-  object-fit: cover;
-}
-
-/* ТЕМНАЯ ВУАЛЬ НАД ВИДЕО */
-.bg-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(11, 10, 8, 0.85); /* 85% темноты, чтобы дым в фоне едва угадывался */
-  z-index: -90;
 }
 
 /* ЦЕНТРАЛЬНЫЙ БЛОК */
@@ -58,10 +37,11 @@ body{
   max-width: 900px;
   width: 100%;
   z-index: 10;
+  transform: translateY(-5%); /* СМЕЩАЕМ КАРТИНКУ И КНОПКИ ЧУТЬ НАВЕРХ */
   animation: fadeIn 1.8s ease-out;
 }
 
-/* ПЛАШКА С ЗОЛОТЫМ СВЕЧЕНИЕМ */
+/* ПЛАШКА С НАЗВАНИЕМ */
 .main-banner {
   max-width: 100%;
   height: auto;
@@ -75,25 +55,27 @@ body{
 
 /* БЛОК КНОПОК */
 .button-group {
-  margin-top: 3rem;
+  margin-top: 2.5rem;
   display: flex;
-  gap: 1.5rem;
+  gap: 1.2rem;
   flex-wrap: wrap;
   justify-content: center;
+  width: 100%;
 }
 
 .nav-btn {
-  padding: 1rem 2.2rem;
-  background: transparent;
+  padding: 0.9rem 1.8rem;
+  background: rgba(11, 10, 8, 0.6); /* Полупрозрачный фон, чтобы сквозь него слегка дышал дым */
   border: 1px solid #C9A96E;
   color: #C9A96E;
   font-family: 'Literatta', Georgia, serif;
-  font-size: 0.95rem;
-  letter-spacing: 0.15em;
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
   cursor: pointer;
   transition: 0.3s ease;
   text-transform: uppercase;
   text-decoration: none;
+  white-space: nowrap;
 }
 .nav-btn:hover {
   background: #C9A96E;
@@ -112,40 +94,41 @@ body{
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.98); }
-  to { opacity: 1; transform: scale(1); }
+  from { opacity: 0; transform: translateY(-3%) scale(0.98); }
+  to { opacity: 1; transform: translateY(-5%) scale(1); }
 }
 
-@media(max-width: 600px) {
+@media(max-width: 768px) {
   .button-group {
     flex-direction: column;
     width: 100%;
-    padding: 0 1rem;
+    padding: 0 1.5rem;
+    gap: 1rem;
   }
   .nav-btn {
     width: 100%;
     text-align: center;
+    padding: 0.8rem;
+  }
+  body {
+    overflow-y: auto; /* На маленьких экранах разрешаем прокрутку, если кнопки не влезают */
   }
 }
 </style>
 </head>
 <body>
 
-<!-- ФОНОВОЕ КИНО -->
-<video class="bg-video" autoplay muted loop playsinline id="bgVideo">
-  <source src="Промо Второй звонок.mp4" type="video/mp4">
-</video>
-<div class="bg-overlay"></div>
-
 <!-- ГЛАВНЫЙ КОНТЕНТ -->
 <div class="main-container">
-  <img src="images/51.png" alt="Второй звонок — Дмитрий Ильин" class="main-banner">
+  <!-- Картинка 63.png по центру -->
+  <img src="images/63.png" alt="Второй звонок — Дмитрий Ильин" class="main-banner">
   
   <div class="button-group">
     <!-- Кнопки входа в архитектурные разделы -->
-    <a href="reader.html" class="nav-btn">Читать роман</a>
-    <a href="materials.html" class="nav-btn">Материалы дела</a>
-    <a href="laboratory.html" class="nav-btn">Лаборатория</a>
+    <a href="reader.html" class="nav-btn">Ознакомиться с текстом</a>
+    <a href="materials.html" class="nav-btn">Архив дела</a>
+    <a href="foreigners.html" class="nav-btn">For Foreigners</a>
+    <a href="laboratory.html" class="nav-btn">Лаборатория проекта</a>
   </div>
 </div>
 
