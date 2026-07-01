@@ -24,6 +24,18 @@ body{
   flex-direction:column;
 }
 
+/* ФОНОВЫЙ КОНТЕЙНЕР (НАЧИНАЕТСЯ ПОД ПОЛОСКОЙ МЕНЮ) */
+.bg-container {
+  position: fixed;
+  top: 55px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('images/81.png') no-repeat center center;
+  background-size: cover;
+  z-index: -100;
+}
+
 /* УЗКАЯ ЧЕРНАЯ ПОЛОСКА МЕНЮ СВЕРХУ */
 .top-navbar {
   position: fixed;
@@ -61,7 +73,7 @@ body{
   display: flex;
   width: 100%;
   max-width: 1200px;
-  margin: 55px auto 0; /* Отступ сверху под меню */
+  margin: 55px auto 0;
   padding: 3rem 1.5rem;
   align-items: center;
   justify-content: center;
@@ -69,11 +81,11 @@ body{
   animation: fadeIn 1.8s ease-out;
 }
 
-/* АДАПТИВНЫЙ КОНТЕЙНЕР ДЛЯ КАРТИНЫ И КНОПКИ ЧИТАТЬ */
+/* АДАПТИВНЫЙ КОНТЕЙНЕР ДЛЯ КАРТИНЫ И КНОПКИ */
 .image-container {
   position: relative;
   width: 100%;
-  max-width: 1100px; /* Размер основного арта на ПК */
+  max-width: 1100px;
   display: inline-block;
 }
 
@@ -86,189 +98,7 @@ body{
   box-shadow: 0 0 70px rgba(201, 169, 110, 0.08);
 }
 
-/* КНОПКА ЧИТАТЬ 82.png (МАСШТАБИРУЕТСЯ ВМЕСТЕ С КАРТИНОЙ) */
-.read-btn-link {
+/* ПОЗИЦИОНИРОВАНИЕ СГЕНЕРИРОВАННОЙ КНОПКИ */
+.read-btn-position {
   position: absolute;
-  left: 10.8%; /* ВЫРАВНИВАЕМ СТРОГО ПОД ЛЕВЫЙ КРАЙ ТЕКСТА НА КАРТИНКЕ */
-  bottom: 6.2%; /* РАЗМЕЩАЕМ В САМОМ НИЗУ НАД ТЕКСТОМ */
-  width: 19.5%; /* Ширина кнопки в процентах от ширины картины */
-  max-width: 210px;
-  z-index: 10;
-}
-.read-btn-img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border: none;
-  background: transparent;
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
-.read-btn-img:hover {
-  transform: scale(1.03);
-  filter: drop-shadow(0 0 20px rgba(201, 169, 110, 0.55));
-}
-
-/* МОДАЛЬНОЕ ОКНО КОНТАКТОВ */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(11, 10, 8, 0.88);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  z-index: 200;
-}
-.modal-overlay.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-.modal-card {
-  background: #0b0a08;
-  border: 1px solid #C9A96E;
-  padding: 3rem 2.5rem 2.5rem;
-  max-width: 500px;
-  width: 100%;
-  box-shadow: 0 0 60px rgba(201, 169, 110, 0.15);
-  position: relative;
-  transform: translateY(20px);
-  transition: transform 0.3s ease;
-}
-.modal-overlay.show .modal-card {
-  transform: translateY(0);
-}
-.modal-close {
-  position: absolute;
-  top: 1rem;
-  right: 1.2rem;
-  background: transparent;
-  border: none;
-  color: #8A7E6B;
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-.modal-close:hover {
-  color: #C9A96E;
-}
-.modal-card h3 {
-  font-family: 'Oranienbaum', Georgia, serif;
-  color: #C9A96E;
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-  letter-spacing: 0.05em;
-  text-align: center;
-}
-.modal-card p {
-  color: #8A7E6B;
-  margin-bottom: 1.5rem;
-  font-size: 0.9rem;
-  line-height: 1.4;
-  text-align: center;
-}
-
-/* БЛАНК ШИФРОВКИ */
-.feedback-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.feedback-form input, .feedback-form textarea {
-  background: #161512;
-  border: 1px solid rgba(201, 169, 110, 0.25);
-  color: #e0d5b0;
-  font-family: 'Literatta', Georgia, serif;
-  padding: 0.75rem;
-  font-size: 0.95rem;
-  outline: none;
-  transition: border-color 0.3s;
-}
-.feedback-form input:focus, .feedback-form textarea:focus {
-  border-color: #C9A96E;
-}
-.feedback-form textarea {
-  resize: vertical;
-  min-height: 100px;
-}
-.form-submit {
-  padding: 0.8rem;
-  background: transparent;
-  border: 1px solid #C9A96E;
-  color: #C9A96E;
-  font-family: 'Literatta', Georgia, serif;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  cursor: pointer;
-  transition: 0.3s;
-}
-.form-submit:hover {
-  background: #C9A96E;
-  color: #0b0a08;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.99); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-@media(max-width: 900px) {
-  .main-wrapper {
-    padding: 1.5rem;
-  }
-  .read-btn-link {
-    bottom: 5.5%; /* Легкая корректировка для мобильных экранов */
-  }
-}
-</style>
-</head>
-<body>
-
-<!-- ВЕРХНЕЕ МЕНЮ НА УЗКОЙ ЧЕРНОЙ ПОЛОСКЕ -->
-<nav class="top-navbar">
-  <a href="materials.html" class="nav-link">Архив</a>
-  <a href="foreigners.html" class="nav-link">En | De | Fr</a>
-  <a href="laboratory.html" class="nav-link">За кулисами</a>
-  <button class="nav-link" onclick="toggleModal(true)">Контакты</button>
-</nav>
-
-<!-- ГЛАВНЫЙ МАКЕТ С КАРТИНОЙ И КНОПКОЙ ЧИТАТЬ ВНУТРИ -->
-<main class="main-wrapper">
-  <div class="image-container">
-    <!-- Изображение 85.png по центру -->
-    <img src="images/85.png" alt="Второй звонок — Дмитрий Ильин" class="main-image">
-    
-    <!-- Кнопка «Начать читать» (82.png), привязанная к левому нижнему углу -->
-    <a href="reader.html" class="read-btn-link">
-      <img src="images/82.png" alt="Читать" class="read-btn-img">
-    </a>
-  </div>
-</main>
-
-<!-- МОДАЛЬНОЕ ОКНО КОНТАКТОВ -->
-<div class="modal-overlay" id="contactModal" onclick="if(event.target === this) toggleModal(false)">
-  <div class="modal-card">
-    <button class="modal-close" onclick="toggleModal(false)">✕</button>
-    <h3>Экстренная шифровка связи</h3>
-    <p>Направьте ваше донесение напрямую автору. Канал обратной связи зашифрован.</p>
-    <form class="feedback-form" action="https://formspree.io/f/mgojzbba" method="POST">
-      <input type="text" name="name" placeholder="Ваш оперативный позывной" required>
-      <input type="email" name="email" placeholder="Канал связи (Ваша почта)" required>
-      <textarea name="message" placeholder="Содержание донесения" required></textarea>
-      <button type="submit" class="form-submit">Передать по каналу связи</button>
-    </form>
-  </div>
-</div>
-
-<script>
-function toggleModal(show) {
-  const modal = document.getElementById('contactModal');
-  modal.classList.toggle('show', show);
-}
-</script>
-
-</body>
-</html>
+  left: 10.8%; /* Выравниваем ровно по левому краю текста на картинке */
