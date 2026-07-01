@@ -22,10 +22,10 @@ body{
   overflow-y:auto;
 }
 
-/* ФОНОВЫЙ КОНТЕЙНЕР (НАЧИНАЕТСЯ ПОД ПОЛОСКОЙ МЕНЮ) */
+/* ФОНОВЫЙ КОНТЕЙНЕР (НАЧИНАЕТСЯ ПОД ПОЛОСКОЙ МЕНЮ, ЧТОБЫ НЕ РЕЗАТЬ КАРТИНКУ) */
 .bg-container {
   position: fixed;
-  top: 55px; /* Начинается ровно под меню, чтобы не резать картинку сверху */
+  top: 55px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -66,75 +66,50 @@ body{
   color: #C9A96E;
 }
 
-/* ГЛАВНЫЙ СПЛИТ-МАКЕТ */
-.home-grid {
-  display: flex;
+/* ЛЕВАЯ КОНСОЛЬ (ЦИТАТА + КНОПКА СНИЗУ) — БЕЗ РАМОК И ПОДЛОЖЕК */
+.left-container {
+  position: absolute;
+  left: 8%; /* Прижимаем к левому краю */
+  top: 55%; /* Центрируем по вертикали */
+  transform: translateY(-50%);
+  max-width: 460px; /* Ограничиваем ширину, чтобы не налезать на заголовок в центре */
   width: 100%;
-  max-width: 1200px;
-  min-height: calc(100vh - 55px);
-  margin-top: 55px;
-  align-items: center;
-  gap: 4rem;
-  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem; /* Зазор между цитатой и кнопкой Читать */
   z-index: 10;
-  animation: fadeIn 1.8s ease-out;
+  animation: fadeIn 1.5s ease-out;
 }
 
-/* ЛЕВАЯ ЧАСТЬ — ЦИТАТА НА ЧЕРНОМ ПОЛУПРОЗРАЧНОМ СТЕКЛЕ */
-.left-pane {
-  flex: 1.1;
-  display: flex;
-  justify-content: flex-start;
-}
-.quote-card {
-  background: rgba(11, 10, 8, 0.86); /* ГЛУБОКАЯ МАТОВАЯ ПОДЛОЖКА */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(201, 169, 110, 0.12);
-  padding: 2.5rem;
-  max-width: 520px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
-}
 .quote-text {
   font-family: 'Literatta', Georgia, serif;
-  color: #e0d5b0;
-  font-size: 1.15rem;
-  line-height: 1.8;
-  font-style: italic;
+  color: #b0a68d; /* Мягкое приглушенное золото для парящего текста */
+  font-size: 1.25rem;
+  line-height: 1.7;
   font-weight: 300;
 }
 .quote-text p {
-  margin-bottom: 1.2rem;
+  margin-bottom: 1rem;
 }
 .quote-text p:last-child {
   margin-bottom: 0;
 }
 
-/* ПРАВАЯ ЧАСТЬ — ТОЛЬКО КНОПКА «ЧИТАТЬ» СНИЗУ */
-.right-pane {
-  flex: 0.9;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end; /* КНОПКА СМЕЩЕНА ВНИЗ */
-  height: 100%;
-  min-height: 300px;
-}
-
+/* КНОПКА ЧИТАТЬ СТРОГО ПОД ТЕКСТОМ */
 .read-btn-link {
   display: block;
-  margin-top: auto; /* Прижимает кнопку к нижней части правой зоны */
+  align-self: flex-start; /* Выравниваем по левому краю текста */
 }
 .read-btn-img {
   display: block;
   max-width: 100%;
-  width: 220px; /* ИЗЯЩНЫЙ КОМПАКТНЫЙ РАЗМЕР */
+  width: 220px; /* Изящный компактный размер */
   height: auto;
-  border: none; /* УБРАЛИ РАМКИ */
+  border: none;
   background: transparent;
   transition: transform 0.3s ease, filter 0.3s ease;
 }
-/* ЭФФЕКТ КОНТУРНОГО СВЕЧЕНИЯ DROP-SHADOW ВМЕСТО КВАДРАТНОЙ ТЕНИ */
+/* ЭФФЕКТ КОНТУРНОГО СВЕЧЕНИЯ DROP-SHADOW */
 .read-btn-img:hover {
   transform: scale(1.03);
   filter: drop-shadow(0 0 20px rgba(201, 169, 110, 0.55));
@@ -251,30 +226,23 @@ body{
   .bg-container {
     background-position: center left 35%; /* На мобильных смещаем фон для видимости портрета */
   }
-  .home-grid {
-    flex-direction: column;
-    justify-content: center;
-    gap: 3rem;
-    padding: 2rem 1.5rem;
-  }
-  .left-pane, .right-pane {
-    width: 100%;
-    max-width: 100%;
-    flex: none;
-    min-height: auto;
-  }
-  .quote-card {
-    max-width: 100%;
-    padding: 1.8rem 1.2rem;
-  }
-  .read-btn-container {
+  .left-container {
     position: relative;
-    bottom: auto;
-    left: auto;
+    left: 0;
+    top: auto;
     transform: none;
-    display: flex;
-    justify-content: center;
-    padding: 1rem 0;
+    max-width: 100%;
+    padding: 70px 1.5rem 2rem;
+    margin-top: 55px;
+    animation: none;
+    gap: 2rem;
+  }
+  .quote-text {
+    max-width: 100%;
+    text-align: left;
+  }
+  .read-btn-link {
+    align-self: center; /* На мобильных центрируем кнопку Читать */
   }
   .read-btn-img {
     width: 180px;
@@ -295,29 +263,17 @@ body{
   <button class="nav-link" onclick="toggleModal(true)">Контакты</button>
 </nav>
 
-<!-- ГЛАВНЫЙ МАКЕТ С ЦИТАТОЙ И КНОПКОЙ -->
-<main class="home-grid">
-  
-  <!-- Слева: цитата из начала главы НОЧЬ -->
-  <div class="left-pane">
-    <div class="quote-card">
-      <div class="quote-text">
-        <p>«Пять сигар назад он начал ждать. Пепел не падал — он снимал его точно в последний момент, двумя короткими движениями пальцев. Без суеты. Без взгляда. Так же, как когда-то снимал людей с должностей, страны с карт, а вопросы повестки.</p>
-        <p>Он всегда успевал раньше. На шаг. На два. На жизнь вперед».</p>
-      </div>
-    </div>
+<!-- ЛЕВАЯ КОНСОЛЬ С ЦИТАТОЙ И КНОПКОЙ ЧИТАТЬ СНИЗУ -->
+<div class="left-container">
+  <div class="quote-text">
+    <p>«Пять сигар назад он начал ждать. Пепел не падал — он снимал его точно в последний момент, двумя короткими движениями пальцев. Без суеты. Без взгляда. Так же, как когда-то снимал людей с должностей, страны с карт, а вопросы повестки.</p>
+    <p>Он всегда успевал раньше. На шаг. На два. На жизнь вперед».</p>
   </div>
   
-  <!-- Справа: только кнопка ЧИТАТЬ (выровненная внизу) -->
-  <div class="right-pane">
-    <div class="read-btn-container">
-      <a href="reader.html" class="read-btn-link">
-        <img src="images/82.png" alt="Читать" class="read-btn-img">
-      </a>
-    </div>
-  </div>
-  
-</main>
+  <a href="reader.html" class="read-btn-link">
+    <img src="images/82.png" alt="Читать" class="read-btn-img">
+  </a>
+</div>
 
 <!-- МОДАЛЬНОЕ ОКНО КОНТАКТОВ -->
 <div class="modal-overlay" id="contactModal" onclick="if(event.target === this) toggleModal(false)">
