@@ -6,26 +6,25 @@ layout: null
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Второй звонок — Дмитрий Ильин</title>
-<link class="foreign" rel="icon" href="images/51.png" type="image/png">
+<title>Архив дела — Второй звонок</title>
+<link rel="icon" href="images/51.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oranienbaum&family=Literatta:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600;6..72,700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-
 body{
-  background:#0b0a08 url('images/69.png') no-repeat center center fixed;
+  background:#0b0a08 url('images/62.png') no-repeat center center fixed;
   background-size: cover;
   color:#e0d5b0;
   font-family:'Literatta',Georgia,serif;
   min-height:100vh;
   overflow-x:hidden;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+  overflow-y:auto;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:3rem 1.5rem;
 }
 
 /* УЗКАЯ ЧЕРНАЯ ПОЛОСКА МЕНЮ СВЕРХУ */
@@ -60,317 +59,283 @@ body{
   color: #C9A96E;
 }
 
-#reader{display:block}
-
-/* СДВИГАЕМ МАКЕТ ВНИЗ ПОД НАВИГАТОР */
-.main-layout{
-  display:flex;
-  min-height:100vh;
-  margin-top: 55px; 
-}
-
-/* САЙДБАР НАЧИНАЕТСЯ ПОД НАВИГАТОРОМ */
-.sidebar{
-  position:fixed;
-  left:0;
-  top:55px;
-  bottom:0;
-  width:280px;
-  background:#141419;
-  border-right:1px solid rgba(201,169,110,.15);
-  overflow-y:auto;
-  z-index:100;
-  padding:2rem 0;
-  transition:transform .35s;
-}
-.sidebar::-webkit-scrollbar{width:4px}
-.sidebar::-webkit-scrollbar-thumb{background:#8A7E6B;border-radius:2px}
-.sb-title{font-family:'Oranienbaum',Georgia,serif;color:#C9A96E;font-size:1.3rem;padding:0 1.5rem 1.5rem;border-bottom:1px solid rgba(201,169,110,.15);margin-bottom:.5rem;letter-spacing:.05em}
-.sb-item{display:block;width:100%;text-align:left;padding:.55rem 1.5rem;color:#8A7E6B;font-family:'Literatta',Georgia,serif;font-size:.88rem;background:0 0;border:none;border-left:2px solid transparent;cursor:pointer;transition:.2s;letter-spacing:.03em}
-.sb-item:hover{color:#C9A96E;background:rgba(201,169,110,.06)}
-.sb-item.active{color:#C9A96E;border-left-color:#C9A96E;background:rgba(201,169,110,.08);padding-left:1.3rem}
-.sb-prologue{font-family:'Oranienbaum',Georgia,serif;font-size:.95rem}
-
-.content{flex:1;margin-left:280px;transition:margin-left .35s}
-
-/* ЧЕРНАЯ ПОДЛОЖКА ТЕКСТА С ТЕНЬЮ И РАМКОЙ */
-.content-inner{
-  max-width:880px;
-  margin:0 auto;
-  padding:4rem 3.5rem 6rem;
-  background:#0b0a08;
-  box-shadow:0 0 80px rgba(0,0,0,0.9);
-  border-left:1px solid rgba(201,169,110,.08);
-  border-right:1px solid rgba(201,169,110,.08);
-}
-
-.novel-title{font-family:'Oranienbaum',Georgia,serif;color:#C9A96E;font-size:2.5rem;text-align:center;margin-bottom:.5rem;letter-spacing:.15em}
-.novel-author{font-family:'Literatta',Georgia,serif;color:#8A7E6B;font-size:1.1rem;text-align:center;margin-bottom:.5rem;letter-spacing:.1em}
-.novel-sub{font-family:'Literatta',Georgia,serif;color:#8A7E6B;font-size:.9rem;text-align:center;margin-bottom:3rem;letter-spacing:.15em;text-transform:uppercase;opacity:.7}
-.chapter-heading{font-family:'Oranienbaum',Georgia,serif;color:#C9A96E;font-size:2rem;text-align:center;margin:4rem 0 2rem;letter-spacing:.12em;text-transform:uppercase}
-.prologue-heading{font-family:'Oranienbaum',Georgia,serif;color:#C9A96E;font-size:1.5rem;text-align:center;margin:2rem 0 1.5rem;letter-spacing:.08em}
-
-/* УВЕЛИЧЕННЫЙ ШРИФТ И ИНТЕРВАЛ */
-.novel-text{color:#e0d5b0;font-size:1.35rem;line-height:1.8;margin-bottom:1.8rem;text-indent:0;font-weight:300}
-.novel-text.no-indent{text-indent:0}
-.novel-text.dialogue{padding-left:1.5em; text-indent:0}
-
-/* === ДОКУМЕНТЫ === */
-.document{background:#f4e4bc;color:#1a1a1a;font-family:'Courier New',Courier,monospace;font-weight:700;font-size:1.15rem;line-height:1.3;padding:2rem 2.2rem;margin:2.5rem 0;border-left:4px solid #C9A96E;box-shadow:0 4px 30px rgba(0,0,0,.6);position:relative}
-.document::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");pointer-events:none}
-.doc-line{margin-bottom:.5rem;position:relative;z-index:1;font-weight:700}
-.doc-line.stamp{color:#C00000;font-weight:900;font-size:1.2rem;letter-spacing:.2em;text-transform:uppercase}
-.doc-line.dots{text-align:center;opacity:.5}
-
-/* === ИНОСТРАННЫЕ СЛОВА === */
-.foreign{font-style:italic;color:#d4c8a0}
-.translation{font-style:normal;color:#8A7E6B;font-size:1em}
-
-.img-inline{max-width:100%;height:auto;margin:3rem auto;display:block;border:1px solid rgba(201,169,110,.15);box-shadow:0 4px 20px rgba(0,0,0,.4)}
-
-.hamburger{position:fixed;top:1rem;left:1rem;z-index:200;background:rgba(11,10,8,.9);border:1px solid #C9A96E;color:#C9A96E;padding:.5rem .75rem;cursor:pointer;font-size:1.1rem;transition:.3s;display:none}
-.hamburger:hover{background:#C9A96E;color:#0b0a08}
-.top-btn{position:fixed;bottom:2rem;right:2rem;z-index:150;background:rgba(11,10,8,.9);border:1px solid #C9A96E;color:#C9A96E;padding:.6rem 1.2rem;cursor:pointer;font-family:'Literatta',Georgia,serif;font-size:.85rem;letter-spacing:.08em;transition:.3s;opacity:0;pointer-events:none}
-.top-btn.show{opacity:1;pointer-events:auto}
-.top-btn:hover{background:#C9A96E;color:#0b0a08}
-.progress{position:fixed;top:55px;left:0;height:2px;background:#C9A96E;z-index:300;transition:width .1s linear} /* СДВИНУЛИ ИНДИКАТОР ПРОГРЕССА ПОД НАВИГАТОР */
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:90;display:none}
-
-/* === ЭЛЕГАНТНЫЙ ХРОНОГРАФ СПРАВА === */
-.chronometer {
-  position: fixed;
-  right: 3rem;
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: 'Oranienbaum', Georgia, serif;
-  color: #C9A96E;
-  text-align: right;
-  border-right: 1.5px solid rgba(201, 169, 110, 0.4);
-  padding-right: 1.5rem;
-  opacity: 0;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  pointer-events: none;
-  z-index: 140;
-}
-.chronometer.show {
-  opacity: 0.85;
-}
-.chrono-date {
-  font-size: 1.35rem;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.15rem;
-}
-.chrono-location {
-  font-size: 0.82rem;
-  font-family: 'Literatta', Georgia, serif;
-  color: #8A7E6B;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-}
-
-/* МОДАЛЬНОЕ ОКНО КОНТАКТОВ */
-.modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(11, 10, 8, 0.88);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  z-index: 200;
-}
-.modal-overlay.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-.modal-card {
-  background: #0b0a08;
-  border: 1px solid #C9A96E;
-  padding: 3rem 2.5rem 2.5rem;
-  max-width: 500px;
+/* ГЛАВНЫЙ КОНТЕЙНЕР (СДВИГАЕМ НА 55px ВНИЗ ПОД МЕНЮ) */
+.archive-wrapper {
+  max-width: 1200px;
   width: 100%;
-  box-shadow: 0 0 60px rgba(201, 169, 110, 0.15);
-  position: relative;
-  transform: translateY(20px);
-  transition: transform 0.3s ease;
-}
-.modal-overlay.show .modal-card {
-  transform: translateY(0);
-}
-.modal-close {
-  position: absolute;
-  top: 1rem;
-  right: 1.2rem;
-  background: transparent;
-  border: none;
-  color: #8A7E6B;
-  font-size: 1.5rem;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-.modal-close:hover {
-  color: #C9A96E;
-}
-.modal-card h3 {
-  font-family: 'Oranienbaum', Georgia, serif;
-  color: #C9A96E;
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-  letter-spacing: 0.05em;
-  text-align: center;
-}
-.modal-card p {
-  color: #8A7E6B;
-  margin-bottom: 1.5rem;
-  font-size: 0.9rem;
-  line-height: 1.4;
-  text-align: center;
-}
-
-/* БЛАНК ШИФРОВКИ */
-.feedback-form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-}
-.feedback-form input, .feedback-form textarea {
-  background: #161512;
-  border: 1px solid rgba(201, 169, 110, 0.25);
-  color: #e0d5b0;
-  font-family: 'Literatta', Georgia, serif;
-  padding: 0.75rem;
-  font-size: 0.95rem;
-  outline: none;
-  transition: border-color 0.3s;
-}
-.feedback-form input:focus, .feedback-form textarea:focus {
-  border-color: #C9A96E;
-}
-.feedback-form textarea {
-  resize: vertical;
-  min-height: 100px;
-}
-.form-submit {
-  padding: 0.8rem;
-  background: transparent;
-  border: 1px solid #C9A96E;
-  color: #C9A96E;
-  font-family: 'Literatta', Georgia, serif;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  cursor: pointer;
-  transition: 0.3s;
-}
-.form-submit:hover {
-  background: #C9A96E;
-  color: #0b0a08;
+  gap: 2rem;
+  margin-top: 55px; /* ОТСТУП ПОД МЕНЮ */
+  animation: fadeIn 1.5s ease-out;
 }
 
-@media(max-width:1150px) {
-  .chronometer { display: none; }
+/* ГРАФИЧЕСКАЯ ПЛАШКА-ЗАГЛОВОК */
+.archive-header-banner {
+  display: block;
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  border: 1px solid rgba(201, 169, 110, 0.3);
+  box-shadow: 0 0 50px rgba(201, 169, 110, 0.08);
+  margin-bottom: 1rem;
 }
-@media(max-width:900px){
-  .sidebar{transform:translateX(-280px); top: 55px;}
-  .sidebar.open{transform:translateX(0)}
-  .content{margin-left:0!important}
-  .hamburger{display:block}
-  .content-inner{padding:2rem 1.25rem 4rem}
-  .novel-title{font-size:1.8rem}
-  .chapter-heading{font-size:1.5rem}
-  .novel-text{font-size:1.05rem}
-  .document{padding:1.2rem 1rem;font-size:.9rem}
+
+/* ГЛУХАЯ ПОЛУПРОЗРАЧНАЯ ПОДЛОЖКА-КАРТОЧКА */
+.archive-card {
+  background: rgba(11, 10, 8, 0.94); /* 94% ТЕМНОТЫ ДЛЯ ИДЕАЛЬНОЙ ЧИТАЕМОСТИ */
+  backdrop-filter: blur(12px); /* ЭФФЕКТ МАТОВОГО СТЕКЛА */
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(201, 169, 110, 0.12);
+  padding: 2.5rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
 }
-@media(max-width:500px){
-  .content-inner{padding:1.5rem 1rem 3rem}
-  .novel-text{font-size:1rem;line-height:1.6}
+
+/* ДВУХКОЛОНОЧНЫЙ СТОЛ НА ПК */
+.split-layout {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+}
+
+.left-column {
+  flex: 1.1; /* МЕНЬШАЯ КОЛОНКА ПОД СИНОПСИС */
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.right-column {
+  flex: 1.9; /* БОЛЬШАЯ КОЛОНКА ПОД ПАПКИ И ВИДЕОПЛЕЕР */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.synopsis-text {
+  color: #e0d5b0;
+  font-size: 1.2rem;
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+.synopsis-text:last-child {
+  margin-bottom: 0;
+}
+
+.section-divider {
+  font-family: 'Oranienbaum', Georgia, serif;
+  color: #C9A96E;
+  font-size: 1.4rem;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-bottom: 1px solid rgba(201, 169, 110, 0.15);
+  padding-bottom: 0.5rem;
+}
+
+/* СЕТКА ПАПОК-ДОКУМЕНТОВ */
+.folder-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: rgba(17, 16, 14, 0.7);
+  border: 1px solid rgba(201, 169, 110, 0.15);
+  padding: 1.5rem;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+.folder-card:hover {
+  border-color: #C9A96E;
+  background: rgba(22, 21, 18, 0.9);
+  box-shadow: 0 4px 30px rgba(201, 169, 110, 0.08);
+  transform: translateY(-2px);
+}
+
+.folder-icon {
+  font-size: 2.2rem;
+  color: #C9A96E;
+  opacity: 0.8;
+}
+
+.folder-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.folder-tag {
+  font-family: 'Courier New', Courier, monospace;
+  color: #C00000; /* архивный красный гриф */
+  font-weight: bold;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+}
+
+.folder-title {
+  font-family: 'Oranienbaum', Georgia, serif;
+  color: #C9A96E;
+  font-size: 1.2rem;
+  letter-spacing: 0.03em;
+}
+
+.folder-desc {
+  font-size: 0.9rem;
+  color: #8A7E6B;
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+/* УБИРАЕМ СИНЕЕ И ФИОЛЕТОВОЕ ПОДЧЕРКИВАНИЕ ССЫЛОК */
+.sub-btn-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  outline: none;
+}
+.sub-btn-link:focus, .sub-btn-link:active, .sub-btn-link:visited {
+  text-decoration: none;
+  color: inherit;
+}
+.btn-img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid rgba(201, 169, 110, 0.25);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.btn-img:hover {
+  border-color: #C9A96E;
+  box-shadow: 0 0 45px rgba(201, 169, 110, 0.2);
+  transform: scale(1.01);
+}
+
+/* ВИДЕОПЛЕЕР СРАЗУ ПОД ПАПКАМИ */
+.video-section {
+  width: 100%;
+  margin-top: 1rem;
+}
+.promo-video-wrap {
+  position: relative;
+  width: 100%;
+  background: #0d0c09;
+  border: 1px solid #C9A96E;
+}
+.promo-video-wrap video {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(1%) scale(0.99); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media(max-width: 900px){
+  .split-layout {
+    flex-direction: column-reverse; /* НА ТЕЛЕФОНАХ ПАПКИ ПОДНИМАЮТСЯ НАВЕРХ */
+    gap: 1.5rem;
+  }
+  .archive-card {
+    padding: 1.8rem 1.2rem;
+  }
+  .folder-card {
+    gap: 1rem;
+    padding: 1.2rem;
+  }
 }
 </style>
 </head>
 <body oncontextmenu="return false;">
 
-<div class="progress" id="progress"></div>
-
-<!-- ПЛАШКА ХРОНОГРАФА СПРАВА -->
-<div class="chronometer" id="chronometer">
-  <div class="chrono-date" id="chronoDate">—</div>
-  <div class="chrono-location" id="chronoLoc">—</div>
-</div>
-
-<!-- ВЕРХНЕЕ МЕНЮ (НАВИГАТОР) С КНОПКОЙ «ДОМОЙ» -->
+<!-- ВЕРХНЕЕ МЕНЮ (НАВИГАТОР) С КНОПКОЙ «ЧИТАТЬ» -->
 <nav class="top-navbar">
   <a href="index.html" class="nav-link">Домой</a>
+  <a href="reader.html" class="nav-link">Читать</a> <!-- ДОБАВЛЕНА КНОПКА «ЧИТАТЬ» -->
   <a href="materials.html" class="nav-link">Архив</a>
   <a href="foreigners.html" class="nav-link">En | De | Fr</a>
   <a href="laboratory.html" class="nav-link">За кулисами</a>
   <button class="nav-link" onclick="toggleModal(true)">Контакты</button>
 </nav>
 
-<div id="reader">
-  <button class="hamburger" id="hamburger" onclick="toggleSidebar()">&#9776;</button>
-  <button class="top-btn" id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593; Наверх</button>
-  <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
-  <div class="main-layout">
-    <nav class="sidebar" id="sidebar">
-      <div class="sb-title">Второй звонок</div>
-      
-      <!-- АВТОМАТИЧЕСКИЙ СПИСОК ГЛАВ ДЛЯ МЕНЮ -->
-      {% assign sorted_chapters = site.chapters | sort: 'idx' %}
-      {% for ch in sorted_chapters %}
-        {% if ch.idx == -1 %}
-          <button class="sb-item sb-prologue" data-idx="-1">{{ ch.title }}</button>
-        {% else %}
-          <button class="sb-item" data-idx="{{ ch.idx }}">{{ ch.title }}</button>
-        {% endif %}
-      {% endfor %}
-    </nav>
-    <main class="content">
-      <div class="content-inner slide-up">
-
-        <!-- ШАХМАТЫ НА СТАРТЕ ЧТЕНИЯ -->
-        <img src="images/02.jpeg" alt="Второй звонок" class="img-inline" style="margin-top: 0; margin-bottom: 3rem;">
-
-        <!-- ЗАГОЛОВОК КНИГИ -->
-        <h1 class="novel-title">ВТОРОЙ ЗВОНОК</h1>
-        <p class="novel-author">ДМИТРИЙ ИЛЬИН</p>
-        <p class="novel-sub">ИНТЕЛЛЕКТУАЛЬНЫЙ ШПИОНСКИЙ НУАР &middot; ДЕКАБРЬ 1946 — МАЙ 1948</p>
-
-        <!-- АВТОМАТИЧЕСКАЯ ПОДГРУЗКА ВСЕХ ГЛАВ ИЗ ПАПКИ _chapters -->
-        {% for ch in sorted_chapters %}
-          <section data-chapter-idx="{{ ch.idx }}">
-            {% if ch.idx == -1 %}
-              <h2 class="prologue-heading">{{ ch.title }}</h2>
-            {% else %}
-              <h2 class="chapter-heading" id="chapter-{{ ch.idx }}">{{ ch.title }}</h2>
-            {% endif %}
-            {{ ch.content }}
-          </section>
-        {% endfor %}
-
-        <!-- ФОРМА ОБРАТНОЙ СВЯЗИ В КОНЦЕ ЧТЕНИЯ -->
-        <div class="feedback-box">
-          <h3>Связаться с автором</h3>
-          <p>Вы можете направить отзыв, рецензию или сообщение автору романа. Ваше сообщение будет доставлено конфиденциально.</p>
-          <form class="feedback-form" action="https://formspree.io/f/mgojzbba" method="POST">
-            <input type="text" name="name" placeholder="Ваше имя или псевдоним" required>
-            <input type="email" name="email" placeholder="Ваша электронная почта для связи" required>
-            <textarea name="message" placeholder="Текст вашего сообщения" required></textarea>
-            <button type="submit" class="form-submit">Отправить сообщение</button>
-          </form>
-        </div>
-
-        <!-- ===== ФУТЕР ===== -->
-        <footer class="footer">
-          <p class="age">⚠️ 18+</p>
-          <p>Свидетельство о публикации № 226061100096</p>
-          <p style="margin-top:0.5rem;">© Дмитрий Ильин. Все права защищены.</p>
-        </footer>
-
+<div class="archive-wrapper">
+  <!-- Графическая плашка-заголовок 71.png по ширине всего блока -->
+  <img src="images/71.png" alt="Архив материалов дела" class="archive-header-banner">
+  
+  <div class="split-layout">
+    
+    <!-- ЛЕВАЯ КОЛОНКА (АКТУАЛИЗИРОВАННЫЙ И СОКРАЩЕННЫЙ СИНОПСИС) -->
+    <div class="left-column">
+      <div class="archive-card">
+        <div class="section-divider">Краткий синопсис</div>
+        <p class="synopsis-text"><strong>«Второй звонок»</strong> — интеллектуальный шпионский нуар, разворачивающийся в послевоенной Европе с декабря 1946 по май 1948 года.</p>
+        <p class="synopsis-text">На фоне Швейцарии, ставшей транзитным узлом для нацистских капиталов, сталкиваются уходящая эпоха «аристократов духа» и «Сетка» — новая безликая система, торгующая информацией по холодным алгоритмам. В центре интриги — папка Канариса, некогда бесценный компромат, превратившийся в смертельный груз.</p>
+        <p class="synopsis-text">Это история о фигурах безжалостной игры, выходящих за рамки протоколов ради обретения имени, и о праве человека не ждать сигнала к действию, а просто начать жить дальше — без оглядки.</p>
       </div>
-    </main>
+    </div>
+    
+    <!-- ПРАВАЯ КОЛОНКА (ИНТЕРАКТИВНЫЕ ПАПКИ И ВИДЕОПЛЕЕР СРАЗУ ПОД НИМИ) -->
+    <div class="right-column">
+      <div class="bottom-row" style="display: flex; flex-direction: column; gap: 1.5rem; justify-content: flex-start; max-width: 100%;">
+        <!-- Папка 1 -->
+        <a href="materials/note.html" class="sub-btn-link" style="max-width: 100%;">
+          <div class="btn-img" style="background: #11100e; padding: 1.5rem; border: 1px solid rgba(201, 169, 110, 0.25); border-left: 4px solid #C9A96E;">
+            <span class="folder-tag">ОСОБАЯ ПАПКА &middot; СОВ. СЕКРЕТНО</span>
+            <h4 class="folder-title" style="margin: 0.3rem 0;">ДЕЛО № 11/С: Аналитическая записка</h4>
+            <p class="folder-desc">Оценка оперативной обстановки в Берне, транзит активов рейха и операция «Скрепка».</p>
+          </div>
+        </a>
+        
+        <!-- Папка 2 -->
+        <a href="materials/report.html" class="sub-btn-link" style="max-width: 100%;">
+          <div class="btn-img" style="background: #11100e; padding: 1.5rem; border: 1px solid rgba(201, 169, 110, 0.25); border-left: 4px solid #C9A96E;">
+            <span class="folder-tag">ЛИЧНО ЦЕНТРУ &middot; СОВ. СЕКРЕТНО</span>
+            <h4 class="folder-title" style="margin: 0.3rem 0;">ДЕЛО № 47/Б: Рапорт Мастера</h4>
+            <p class="folder-desc">Детальный отчет о ликвидации Объекта «Аргентинец» на охоте и причинах провала Вальтера.</p>
+          </div>
+        </a>
+        
+        <!-- Папка 3 -->
+        <a href="materials/reference.html" class="sub-btn-link" style="max-width: 100%;">
+          <div class="btn-img" style="background: #11100e; padding: 1.5rem; border: 1px solid rgba(201, 169, 110, 0.25); border-left: 4px solid #C9A96E;">
+            <span class="folder-tag">СПРАВОЧНЫЕ МАТЕРИАЛЫ &middot; ДЛЯ ИЗУЧЕНИЯ</span>
+            <h4 class="folder-title" style="margin: 0.3rem 0;">Исторический комментарий</h4>
+            <p class="folder-desc">Подлинная судьба архива Абвера («папки Канариса»), Парижские мирные договоры и кризис 1948 года.</p>
+          </div>
+        </a>
+        
+        <!-- Папка 4 -->
+        <a href="materials/dossier_characters.html" class="sub-btn-link" style="max-width: 100%;">
+          <div class="btn-img" style="background: #11100e; padding: 1.5rem; border: 1px solid rgba(201, 169, 110, 0.25); border-left: 4px solid #C9A96E;">
+            <span class="folder-tag">ЛИЧНЫЕ ДЕЛА &middot; СЕТКА</span>
+            <h4 class="folder-title" style="margin: 0.3rem 0;">Dramatis Personae: Действующие лица</h4>
+            <p class="folder-desc">Развернутые досье на Алекса, Мастера, Виолетту, Майю-Розу и второстепенных персонажей романа.</p>
+          </div>
+        </a>
+        
+        <!-- Папка 5 -->
+        <a href="materials/literary_essay.html" class="sub-btn-link" style="max-width: 100%;">
+          <div class="btn-img" style="background: #11100e; padding: 1.5rem; border: 1px solid rgba(201, 169, 110, 0.25); border-left: 4px solid #C9A96E;">
+            <span class="folder-tag">ЛИТЕРАТУРОВЕДЧЕСКИЙ ОЧЕРК</span>
+            <h4 class="folder-title" style="margin: 0.3rem 0;">Художественная архитектура и смыслы</h4>
+            <p class="folder-desc">Литературный анализ метафоры «второго звонка», эволюции музыки, кодов и психо-эмоциональной градации.</p>
+          </div>
+        </a>
+      </div>
+      
+      <!-- ВИДЕОПЛЕЕР СРАЗУ ПОД ПАПКАМИ -->
+      <div class="video-section archive-card">
+        <div class="section-divider">Промо-видеопрезентация</div>
+        <div class="promo-video-wrap">
+          <video controls loop playsinline>
+            <source src="Промо Второй звонок.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+    
   </div>
 </div>
 
@@ -390,128 +355,11 @@ body{
 </div>
 
 <script>
-// === ДАННЫЕ ДЛЯ ХРОНОГРАФА ===
-var chronoData = {
-    "-1": { date: "ДЕКАБРЬ 1946", loc: "ЕВРОПА" },
-    "0": { date: "12 ДЕК 1946", loc: "БЕРН, 23:07" },
-    "1": { date: "13 ДЕК 1946", loc: "БЕРН, 07:43" },
-    "2": { date: "13 ДЕК 1946", loc: "БЕРН, 19:15" },
-    "3": { date: "13 ДЕК 1946", loc: "БЕРН, 22:15" },
-    "4": { date: "13 ДЕК 1946", loc: "БЕРН, 22:16" },
-    "5": { date: "13 ДЕК 1946", loc: "СТ. WEYERMANNSHAUS" },
-    "6": { date: "2 МАРТА 1943", loc: "ЛИССАБОН" },
-    "7": { date: "14 ДЕК 1946", loc: "НА ПЕРЕГОНЕ" },
-    "8": { date: "14 ДЕК 1946", loc: "СТ. ИЗОЛЛА" },
-    "9": { date: "14 ДЕК 1946", loc: "МИЛАН" },
-    "10": { date: "15 ДЕК 1946", loc: "БАРИ, БАЗА" },
-    "11": { date: "15 ДЕК 1946", loc: "ВАЛЛЕТТА, МАЛЬТА" },
-    "12": { date: "3 ЯНВАРЯ 1947", loc: "ЛОНДОН, ВЭСТ-ЭНД" },
-    "13": { date: "12 ДЕК 1946", loc: "ЛОНДОН, ДНЕВНИК" },
-    "14": { date: "ЯНВАРЬ 1947", loc: "БЕРН, МАСТЕРСКАЯ" },
-    "15": { date: "25 ЯНВ. 1947", loc: "БЕРН, ДОСЬЕ" },
-    "16": { date: "ЯНВ. - ФЕВР. 1947", loc: "БЕРН" },
-    "17": { date: "5 ФЕВР. 1947", loc: "БЕРНСКИЙ ЛЕС" },
-    "18": { date: "5 ФЕВР. 1947", loc: "БЕРН, НОЧЬ" },
-    "19": { date: "8 ФЕВР. 1947", loc: "ПОЕЗД В ЖЕНЕВУ" },
-    "20": { date: "8 ФЕВР. 1947", loc: "ЖЕНЕВА - БЕРН" },
-    "21": { date: "9 ФЕВР. 1947", loc: "БЕРН, 16:24" },
-    "22": { date: "9 ФЕВР. 1947", loc: "ПИСЬМО" },
-    "23": { date: "17 МАЯ 1948", loc: "ЦЮРИХ, БАНК" },
-    "24": { date: "27 ИЮЛЯ 1948", loc: "ЛЮЦЕРН" },
-    "25": { date: "5 ФЕВР. 1947", loc: "БЕРН, РАПОРТ" },
-    "26": { date: "1943 — 1948", loc: "АРХИВЫ" }
-};
-
-var sidebar = document.getElementById('sidebar');
-var overlay = document.getElementById('overlay');
-var progress = document.getElementById('progress');
-var topBtn = document.getElementById('topBtn');
-var hamburger = document.getElementById('hamburger');
-var chronometer = document.getElementById('chronometer');
-var chronoDate = document.getElementById('chronoDate');
-var chronoLoc = document.getElementById('chronoLoc');
-var sbItems = document.querySelectorAll('.sb-item');
-var activeIdx = -1;
-var sidebarOpen = false;
-
-document.addEventListener('keydown', function(e) {
-    if (e.ctrlKey && (e.key === 'c' || e.key === 'C' || e.key === 'u' || e.key === 'U' || e.key === 'i' || e.key === 'I')) {
-        e.preventDefault();
-        return false;
-    }
-});
-
-function toggleSidebar() {
-    sidebarOpen = !sidebarOpen;
-    sidebar.classList.toggle('open', sidebarOpen);
-    overlay.style.display = sidebarOpen ? 'block' : 'none';
-    hamburger.innerHTML = sidebarOpen ? '✕' : '☰';
-}
-
 function toggleModal(show) {
   const modal = document.getElementById('contactModal');
   modal.classList.toggle('show', show);
 }
-
-function scrollToChapter(idx) {
-    var el = document.querySelector('[data-chapter-idx="' + idx + '"]');
-    if (el) {
-        var y = el.getBoundingClientRect().top + window.scrollY - 20;
-        window.scrollTo({ top: y, behavior: 'smooth' });
-    }
-    if (sidebarOpen) toggleSidebar();
-}
-
-sbItems.forEach(function(btn) {
-    btn.addEventListener('click', function(e) {
-        var idx = parseInt(this.dataset.idx);
-        scrollToChapter(idx);
-    });
-});
-
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape' && sidebarOpen) toggleSidebar();
-});
-
-window.addEventListener('scroll', function() {
-    var sy = window.scrollY;
-    var dh = document.documentElement.scrollHeight - window.innerHeight;
-    if (dh > 0) progress.style.width = (sy / dh * 100) + '%';
-    topBtn.classList.toggle('show', sy > 600);
-    localStorage.setItem('vz_scroll', sy);
-
-    var headings = document.querySelectorAll('[data-chapter-idx]');
-    var cur = -1;
-    headings.forEach(function(el) {
-        if (el.getBoundingClientRect().top < window.innerHeight * 0.4) {
-            cur = parseInt(el.dataset.chapterIdx);
-        }
-    });
-
-    if (cur !== activeIdx) {
-        activeIdx = cur;
-        sbItems.forEach(function(b) {
-            b.classList.toggle('active', parseInt(b.dataset.idx) === cur);
-        });
-
-        if (chronoData[cur]) {
-            chronoDate.textContent = chronoData[cur].date;
-            chronoLoc.textContent = chronoData[cur].loc;
-            chronometer.classList.add('show');
-        } else {
-            chronometer.classList.remove('show');
-        }
-    }
-});
-
-window.addEventListener('load', function() {
-    var s = localStorage.getItem('vz_scroll');
-    if (s) {
-        setTimeout(function() {
-            window.scrollTo({ top: parseInt(s), behavior: 'smooth' });
-        }, 100);
-    }
-});
 </script>
+
 </body>
 </html>
