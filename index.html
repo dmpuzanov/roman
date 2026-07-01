@@ -14,7 +14,7 @@ layout: null
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{
-  background-color: #050505; /* ГЛУБОКИЙ ЧЕРНЫЙ ФОН */
+  background-color: #050505; /* ГЛУБОКИЙ ЧИСТЫЙ ЧЕРНЫЙ ФОН */
   color:#e0d5b0;
   font-family:'Literatta',Georgia,serif;
   min-height:100vh;
@@ -197,3 +197,44 @@ body{
   transition: border-color 0.3s;
 }
 .feedback-form input:focus, .feedback-form textarea:focus {
+  border-color: #C9A96E;
+}
+.feedback-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+.form-submit {
+  padding: 0.8rem;
+  background: transparent;
+  border: 1px solid #C9A96E;
+  color: #C9A96E;
+  font-family: 'Literatta', Georgia, serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.form-submit:hover {
+  background: #C9A96E;
+  color: #0b0a08;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.99); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@media(max-width: 900px) {
+  .home-grid {
+    flex-direction: column;
+    justify-content: center;
+    gap: 3rem;
+    padding: 2rem 1.5rem;
+  }
+  .left-pane, .right-pane {
+    width: 100%;
+    max-width: 100%;
+    flex: none;
+    min-height: auto;
+  }
+  .read-btn-position {
