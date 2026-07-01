@@ -20,18 +20,8 @@ body{
   min-height:100vh;
   overflow-x:hidden;
   overflow-y:auto;
-}
-
-/* ФОНОВЫЙ КОНТЕЙНЕР (НАЧИНАЕТСЯ ПОД ПОЛОСКОЙ МЕНЮ, ЧТОБЫ НЕ РЕЗАТЬ КАРТИНКУ) */
-.bg-container {
-  position: fixed;
-  top: 55px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('images/81.png') no-repeat center center;
-  background-size: cover;
-  z-index: -100;
+  display:flex;
+  flex-direction:column;
 }
 
 /* УЗКАЯ ЧЕРНАЯ ПОЛОСКА МЕНЮ СВЕРХУ */
@@ -66,50 +56,53 @@ body{
   color: #C9A96E;
 }
 
-/* ЛЕВАЯ КОНСОЛЬ (ЦИТАТА + КНОПКА СНИЗУ) — БЕЗ РАМОК И ПОДЛОЖЕК */
-.left-container {
-  position: absolute;
-  left: 8%; /* Прижимаем к левому краю */
-  top: 55%; /* Центрируем по вертикали */
-  transform: translateY(-50%);
-  max-width: 460px; /* Ограничиваем ширину, чтобы не налезать на заголовок в центре */
-  width: 100%;
+/* ГЛАВНЫЙ КОНТЕЙНЕР (СДВИГАЕМ НА 55px ВНИЗ ПОД МЕНЮ) */
+.main-wrapper {
   display: flex;
-  flex-direction: column;
-  gap: 2.5rem; /* Зазор между цитатой и кнопкой Читать */
+  width: 100%;
+  max-width: 1200px;
+  margin: 55px auto 0; /* Отступ сверху под меню */
+  padding: 3rem 1.5rem;
+  align-items: center;
+  justify-content: center;
   z-index: 10;
-  animation: fadeIn 1.5s ease-out;
+  animation: fadeIn 1.8s ease-out;
 }
 
-.quote-text {
-  font-family: 'Literatta', Georgia, serif;
-  color: #b0a68d; /* Мягкое приглушенное золото для парящего текста */
-  font-size: 1.25rem;
-  line-height: 1.7;
-  font-weight: 300;
-}
-.quote-text p {
-  margin-bottom: 1rem;
-}
-.quote-text p:last-child {
-  margin-bottom: 0;
+/* АДАПТИВНЫЙ КОНТЕЙНЕР ДЛЯ КАРТИНЫ И КНОПКИ ЧИТАТЬ */
+.image-container {
+  position: relative;
+  width: 100%;
+  max-width: 1100px; /* Размер основного арта на ПК */
+  display: inline-block;
 }
 
-/* КНОПКА ЧИТАТЬ СТРОГО ПОД ТЕКСТОМ */
-.read-btn-link {
+/* ОСНОВНАЯ КАРТИНА 85.png */
+.main-image {
   display: block;
-  align-self: flex-start; /* Выравниваем по левому краю текста */
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(201, 169, 110, 0.25);
+  box-shadow: 0 0 70px rgba(201, 169, 110, 0.08);
+}
+
+/* КНОПКА ЧИТАТЬ 82.png (МАСШТАБИРУЕТСЯ ВМЕСТЕ С КАРТИНОЙ) */
+.read-btn-link {
+  position: absolute;
+  left: 10.8%; /* ВЫРАВНИВАЕМ СТРОГО ПОД ЛЕВЫЙ КРАЙ ТЕКСТА НА КАРТИНКЕ */
+  bottom: 6.2%; /* РАЗМЕЩАЕМ В САМОМ НИЗУ НАД ТЕКСТОМ */
+  width: 19.5%; /* Ширина кнопки в процентах от ширины картины */
+  max-width: 210px;
+  z-index: 10;
 }
 .read-btn-img {
   display: block;
-  max-width: 100%;
-  width: 220px; /* Изящный компактный размер */
+  width: 100%;
   height: auto;
   border: none;
   background: transparent;
   transition: transform 0.3s ease, filter 0.3s ease;
 }
-/* ЭФФЕКТ КОНТУРНОГО СВЕЧЕНИЯ DROP-SHADOW */
 .read-btn-img:hover {
   transform: scale(1.03);
   filter: drop-shadow(0 0 20px rgba(201, 169, 110, 0.55));
@@ -223,37 +216,16 @@ body{
 }
 
 @media(max-width: 900px) {
-  .bg-container {
-    background-position: center left 35%; /* На мобильных смещаем фон для видимости портрета */
-  }
-  .left-container {
-    position: relative;
-    left: 0;
-    top: auto;
-    transform: none;
-    max-width: 100%;
-    padding: 70px 1.5rem 2rem;
-    margin-top: 55px;
-    animation: none;
-    gap: 2rem;
-  }
-  .quote-text {
-    max-width: 100%;
-    text-align: left;
+  .main-wrapper {
+    padding: 1.5rem;
   }
   .read-btn-link {
-    align-self: center; /* На мобильных центрируем кнопку Читать */
-  }
-  .read-btn-img {
-    width: 180px;
+    bottom: 5.5%; /* Легкая корректировка для мобильных экранов */
   }
 }
 </style>
 </head>
 <body>
-
-<!-- ФОНОВЫЙ КОНТЕЙНЕР С КАРТИНОЙ 81.png -->
-<div class="bg-container"></div>
 
 <!-- ВЕРХНЕЕ МЕНЮ НА УЗКОЙ ЧЕРНОЙ ПОЛОСКЕ -->
 <nav class="top-navbar">
@@ -263,17 +235,18 @@ body{
   <button class="nav-link" onclick="toggleModal(true)">Контакты</button>
 </nav>
 
-<!-- ЛЕВАЯ КОНСОЛЬ С ЦИТАТОЙ И КНОПКОЙ ЧИТАТЬ СНИЗУ -->
-<div class="left-container">
-  <div class="quote-text">
-    <p>«Пять сигар назад он начал ждать. Пепел не падал — он снимал его точно в последний момент, двумя короткими движениями пальцев. Без суеты. Без взгляда. Так же, как когда-то снимал людей с должностей, страны с карт, а вопросы повестки.</p>
-    <p>Он всегда успевал раньше. На шаг. На два. На жизнь вперед».</p>
+<!-- ГЛАВНЫЙ МАКЕТ С КАРТИНОЙ И КНОПКОЙ ЧИТАТЬ ВНУТРИ -->
+<main class="main-wrapper">
+  <div class="image-container">
+    <!-- Изображение 85.png по центру -->
+    <img src="images/85.png" alt="Второй звонок — Дмитрий Ильин" class="main-image">
+    
+    <!-- Кнопка «Начать читать» (82.png), привязанная к левому нижнему углу -->
+    <a href="reader.html" class="read-btn-link">
+      <img src="images/82.png" alt="Читать" class="read-btn-img">
+    </a>
   </div>
-  
-  <a href="reader.html" class="read-btn-link">
-    <img src="images/82.png" alt="Читать" class="read-btn-img">
-  </a>
-</div>
+</main>
 
 <!-- МОДАЛЬНОЕ ОКНО КОНТАКТОВ -->
 <div class="modal-overlay" id="contactModal" onclick="if(event.target === this) toggleModal(false)">
