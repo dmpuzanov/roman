@@ -27,25 +27,54 @@ body{
   padding:3rem 1.5rem;
 }
 
-/* КНОПКА «ДОМОЙ» */
-.back-btn{position:fixed;top:1rem;right:1rem;z-index:200;background:rgba(11,10,8,.9);border:1px solid #C9A96E;color:#C9A96E;padding:.5rem 1rem;cursor:pointer;font-family:'Literatta',Georgia,serif;font-size:.85rem;letter-spacing:.08em;transition:.3s;display:block;text-decoration:none}
-.back-btn:hover{background:#C9A96E;color:#0b0a08}
+/* УЗКАЯ ЧЕРНАЯ ПОЛОСКА МЕНЮ СВЕРХУ */
+.top-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 55px;
+  background: #000000;
+  border-bottom: 1px solid rgba(201, 169, 110, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+  z-index: 150;
+}
+.nav-link {
+  color: #8A7E6B;
+  font-family: 'Literatta', Georgia, serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+.nav-link:hover {
+  color: #C9A96E;
+}
 
-/* ГЛАВНЫЙ КОНТЕЙНЕР ДЛЯ ШИРОКИХ ЭКРАНОВ */
+/* ГЛАВНЫЙ КОНТЕЙНЕР (СДВИГАЕМ НА 55px ВНИЗ ПОД МЕНЮ) */
 .archive-wrapper {
   max-width: 1200px;
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 2rem;
+  margin-top: 55px; /* ОТСТУП ПОД МЕНЮ */
   animation: fadeIn 1.5s ease-out;
 }
 
-/* НОВАЯ ПЛАШКА-ЗАГОЛОВОК 71.png ПО ШИРИНЕ ВСЕГО БЛОКА */
+/* ГРАФИЧЕСКАЯ ПЛАШКА-ЗАГЛОВОК */
 .archive-header-banner {
   display: block;
   width: 100%;
-  max-width: 1200px; /* СОВПАДАЕТ С МАКСИМАЛЬНОЙ ШИРИНОЙ КОНТЕЙНЕРА */
+  max-width: 1200px;
   height: auto;
   border: 1px solid rgba(201, 169, 110, 0.3);
   box-shadow: 0 0 50px rgba(201, 169, 110, 0.08);
@@ -54,8 +83,8 @@ body{
 
 /* ГЛУХАЯ ПОЛУПРОЗРАЧНАЯ ПОДЛОЖКА-КАРТОЧКА */
 .archive-card {
-  background: rgba(11, 10, 8, 0.94); /* 94% ТЕМНОТЫ ДЛЯ ИДЕАЛЬНОЙ ЧИТАЕМОСТИ */
-  backdrop-filter: blur(12px); /* ЭФФЕКТ МАТОВОГО СТЕКЛА */
+  background: rgba(11, 10, 8, 0.94);
+  backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(201, 169, 110, 0.12);
   padding: 2.5rem;
@@ -70,14 +99,14 @@ body{
 }
 
 .left-column {
-  flex: 1.1; /* МЕНЬШАЯ КОЛОНКА ПОД СИНОПСИС */
+  flex: 1.1;
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
 .right-column {
-  flex: 1.9; /* БОЛЬШАЯ КОЛОНКА ПОД ПАПКИ И ВИДЕОПЛЕЕР */
+  flex: 1.9;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -137,7 +166,7 @@ body{
 
 .folder-tag {
   font-family: 'Courier New', Courier, monospace;
-  color: #C00000; /* архивный красный гриф */
+  color: #C00000;
   font-weight: bold;
   font-size: 0.8rem;
   letter-spacing: 0.1em;
@@ -199,6 +228,108 @@ body{
   height: auto;
 }
 
+/* МОДАЛЬНОЕ ОКНО КОНТАКТОВ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 10, 8, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 200;
+}
+.modal-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal-card {
+  background: #0b0a08;
+  border: 1px solid #C9A96E;
+  padding: 3rem 2.5rem 2.5rem;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 0 60px rgba(201, 169, 110, 0.15);
+  position: relative;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+.modal-overlay.show .modal-card {
+  transform: translateY(0);
+}
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  background: transparent;
+  border: none;
+  color: #8A7E6B;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.modal-close:hover {
+  color: #C9A96E;
+}
+.modal-card h3 {
+  font-family: 'Oranienbaum', Georgia, serif;
+  color: #C9A96E;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+.modal-card p {
+  color: #8A7E6B;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  text-align: center;
+}
+
+/* БЛАНК ШИФРОВКИ */
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.feedback-form input, .feedback-form textarea {
+  background: #161512;
+  border: 1px solid rgba(201, 169, 110, 0.25);
+  color: #e0d5b0;
+  font-family: 'Literatta', Georgia, serif;
+  padding: 0.75rem;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+.feedback-form input:focus, .feedback-form textarea:focus {
+  border-color: #C9A96E;
+}
+.feedback-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+.form-submit {
+  padding: 0.8rem;
+  background: transparent;
+  border: 1px solid #C9A96E;
+  color: #C9A96E;
+  font-family: 'Literatta', Georgia, serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.form-submit:hover {
+  background: #C9A96E;
+  color: #0b0a08;
+}
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(1%) scale(0.99); }
   to { opacity: 1; transform: translateY(0) scale(1); }
@@ -221,8 +352,14 @@ body{
 </head>
 <body oncontextmenu="return false;">
 
-<!-- КНОПКА «ДОМОЙ» -->
-<a class="back-btn" href="index.html">&#8592; Домой</a>
+<!-- ВЕРХНЕЕ МЕНЮ (НАВИГАТОР) С КНОПКОЙ «ДОМОЙ» -->
+<nav class="top-navbar">
+  <a href="index.html" class="nav-link">Домой</a>
+  <a href="materials.html" class="nav-link">Архив</a>
+  <a href="foreigners.html" class="nav-link">En | De | Fr</a>
+  <a href="laboratory.html" class="nav-link">За кулисами</a>
+  <button class="nav-link" onclick="toggleModal(true)">Контакты</button>
+</nav>
 
 <div class="archive-wrapper">
   <!-- Графическая плашка-заголовок 71.png по ширине всего блока -->
@@ -302,6 +439,28 @@ body{
     
   </div>
 </div>
+
+<!-- МОДАЛЬНОЕ ОКНО КОНТАКТОВ -->
+<div class="modal-overlay" id="contactModal" onclick="if(event.target === this) toggleModal(false)">
+  <div class="modal-card">
+    <button class="modal-close" onclick="toggleModal(false)">✕</button>
+    <h3>Экстренная шифровка связи</h3>
+    <p>Направьте ваше донесение напрямую автору. Канал обратной связи зашифрован.</p>
+    <form class="feedback-form" action="https://formspree.io/f/mgojzbba" method="POST">
+      <input type="text" name="name" placeholder="Ваш оперативный позывной" required>
+      <input type="email" name="email" placeholder="Канал связи (Ваша почта)" required>
+      <textarea name="message" placeholder="Содержание донесения" required></textarea>
+      <button type="submit" class="form-submit">Передать по каналу связи</button>
+    </form>
+  </div>
+</div>
+
+<script>
+function toggleModal(show) {
+  const modal = document.getElementById('contactModal');
+  modal.classList.toggle('show', show);
+}
+</script>
 
 </body>
 </html>
