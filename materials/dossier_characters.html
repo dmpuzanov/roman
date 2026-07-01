@@ -1,0 +1,470 @@
+---
+layout: null
+---
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Досье персонажей — Второй звонок</title>
+<link rel="icon" href="../images/51.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oranienbaum&family=Literatta:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600;6..72,700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:#0b0a08 url('../images/62.png') no-repeat center center fixed;
+  background-size: cover;
+  color:#e0d5b0;
+  font-family:'Literatta',Georgia,serif;
+  min-height:100vh;
+  overflow-x:hidden;
+  overflow-y:auto;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+/* УЗКАЯ ЧЕРНАЯ ПОЛОСКА МЕНЮ СВЕРХУ */
+.top-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 55px;
+  background: #000000;
+  border-bottom: 1px solid rgba(201, 169, 110, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+  z-index: 150;
+}
+.nav-link {
+  color: #8A7E6B;
+  font-family: 'Literatta', Georgia, serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+.nav-link:hover, .nav-link.active {
+  color: #C9A96E;
+}
+
+/* КОНТЕЙНЕР ДЛЯ ЛИСТА БУМАГИ */
+.document-wrapper {
+  max-width: 900px;
+  width: 100%;
+  margin: 95px auto 4rem;
+  padding: 0 1.5rem;
+  z-index: 10;
+  animation: fadeIn 1.5s ease-out;
+}
+
+/* АРХИВНЫЙ ЛИСТ БУМАГИ */
+.paper-sheet {
+  background: #f4e4bc; /* Цвет состаренной бумаги */
+  color: #1a1a1a;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 700;
+  font-size: 1.12rem;
+  line-height: 1.35;
+  padding: 4rem 4rem 5rem 6rem; /* Больший отступ слева под дырокол */
+  box-shadow: 0 15px 50px rgba(0,0,0,0.85);
+  position: relative;
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+}
+.paper-sheet::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* ДЫРКИ ОТ ДЫРОКОЛА СЛЕВА */
+.binder-hole {
+  position: absolute;
+  left: 2rem;
+  width: 16px;
+  height: 16px;
+  background: #0b0a08;
+  border-radius: 50%;
+  box-shadow: inset 2px 2px 4px rgba(0,0,0,0.6);
+}
+.hole-top { top: 10%; }
+.hole-mid { top: 50%; transform: translateY(-50%); }
+.hole-bot { bottom: 10%; }
+
+/* ОФОРМЛЕНИЕ МАШИНОПИСНОГО ТЕКСТА */
+.doc-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  border-bottom: 2px double #1a1a1a;
+  padding-bottom: 1rem;
+}
+.stamp-red {
+  color: #C00000;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.handwritten-blue {
+  font-family: 'Literatta', Georgia, serif;
+  font-style: italic;
+  font-weight: normal;
+  color: #1e3d59;
+  font-size: 1.15rem;
+  transform: rotate(-2deg);
+  display: inline-block;
+}
+
+/* ОТЧЕТ О ВЕРИФИКАЦИИ (ЖЕЛТЫЙ ПРИКОЛОТЫЙ ЛИСТОК) */
+.verification-report {
+  background: #fdf5e6;
+  border: 1px dashed rgba(138, 126, 107, 0.4);
+  padding: 1.5rem 1.8rem;
+  margin-bottom: 3rem;
+  box-shadow: 3px 3px 15px rgba(0,0,0,0.1);
+  position: relative;
+}
+.verification-report h4 {
+  color: #C00000;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  font-size: 1.05rem;
+  letter-spacing: 0.05em;
+  border-bottom: 1px dashed rgba(0,0,0,0.15);
+  padding-bottom: 0.3rem;
+}
+.verification-report ol {
+  padding-left: 1.5rem;
+}
+.verification-report li {
+  margin-bottom: 0.6rem;
+  font-size: 1rem;
+  line-height: 1.4;
+  text-align: justify;
+}
+
+.doc-title {
+  text-align: center;
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.doc-section-title {
+  font-size: 1.25rem;
+  margin: 3.5rem 0 1.5rem;
+  text-transform: uppercase;
+  border-bottom: 1px solid #1a1a1a;
+  padding-bottom: 0.3rem;
+}
+.doc-paragraph {
+  margin-bottom: 1.2rem;
+  text-align: justify;
+}
+.doc-list {
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+  list-style-type: none;
+}
+.doc-list li {
+  margin-bottom: 0.6rem;
+  text-align: justify;
+}
+
+/* РАМКА ДЛЯ АРХИВНЫХ ФОТОКАРТОЧЕК */
+.photo-frame {
+  border: 1.5px dashed rgba(26, 26, 26, 0.4);
+  padding: 1.5rem;
+  margin: 2rem 0;
+  background: rgba(0, 0, 0, 0.02);
+}
+.photo-title {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  margin-bottom: 0.8rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+}
+.photo-desc {
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #4a4a4a;
+}
+
+/* ШИФРОВАННЫЙ ПЕРЕХВАТ В КОНЦЕ */
+.intercept-block {
+  background: #141419;
+  color: #e0d5b0;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  padding: 2rem;
+  margin-top: 4rem;
+  border: 1px solid rgba(201, 169, 110, 0.2);
+}
+.intercept-header {
+  border-bottom: 1px dashed rgba(201, 169, 110, 0.2);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+.intercept-line {
+  margin-bottom: 0.5rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(1%) scale(0.99); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media(max-width: 768px){
+  .paper-sheet {
+    padding: 3rem 1.5rem 3rem 3rem;
+  }
+  .binder-hole {
+    left: 0.8rem;
+    width: 10px;
+    height: 10px;
+  }
+}
+</style>
+</head>
+<body oncontextmenu="return false;">
+
+<!-- ВЕРХНЕЕ МЕНЮ (НАВИГАТОР) -->
+<nav class="top-navbar">
+  <a href="../index.html" class="nav-link">Домой</a>
+  <a href="../reader.html" class="nav-link">Читать</a>
+  <a href="../materials.html" class="nav-link active">Архив</a>
+  <a href="../foreigners.html" class="nav-link">En | De | Fr</a>
+  <a href="../laboratory.html" class="nav-link">За кулисами</a>
+</nav>
+
+<div class="document-wrapper">
+  <div class="paper-sheet">
+    
+    <!-- ТРИ ДЫРКИ ОТ ДЫРОКОЛА СЛЕВА -->
+    <div class="binder-hole hole-top"></div>
+    <div class="binder-hole hole-mid"></div>
+    <div class="binder-hole hole-bot"></div>
+
+    <!-- ШАПКА ДОКУМЕНТА -->
+    <div class="doc-header">
+      <div>
+        <p>АРХИВНЫЙ ФОНД: «ВТОРОЙ ЗВОНОК»</p>
+        <p>ФОРМАТ: ВЕРИФИЦИРОВАННЫЕ ДОСЬЕ</p>
+      </div>
+      <div style="text-align: right;">
+        <p class="stamp-red">СОВЕРШЕННО СЕКРЕТНО / EYES ONLY</p>
+        <p class="handwritten-blue" style="margin-top: 0.5rem;">Дело № 47-Б, т. 1</p>
+      </div>
+    </div>
+
+    <!-- ОТЧЕТ О ВЕРИФИКАЦИИ -->
+    <div class="verification-report">
+      <h4>Внимание: Проведена сверка с первичными источниками</h4>
+      <p class="doc-paragraph" style="font-size: 0.95rem; margin-bottom: 1rem; font-style: italic;">Архивариус сообщает: из предварительных досье устранены противоречия, слухи и оперативные легенды. Восстановлена хронология и истинное положение лиц.</p>
+      <p class="doc-paragraph" style="font-size: 1rem; font-weight: bold; margin-bottom: 0.5rem;">Отчет о верификации (внесенные исправления):</p>
+      <ol>
+        <li><strong>Марта:</strong> Исключены неподтвержденные данные об «обучении в школе якудза».</li>
+        <li><strong>Пенья:</strong> Уточено — лично Алексом не утоплен. Исполнитель — Вальтер.</li>
+        <li><strong>Алекс:</strong> Исключено из досье как биологический отец Майи-Розы. Биологический отец — Мастер (Апрель).</li>
+        <li><strong>Аргентинец:</strong> Уточнено происхождение. Он уроженец Карибского региона (выдает фонетика), а не Аргентины.</li>
+        <li><strong>Вальтер:</strong> Сведения о «вязании на спицах» признаны оперативным слухом и удалены. Уточнено место гибели — Сардиния.</li>
+        <li><strong>Майя-Роза:</strong> Скорректирован возраст (13 лет в январе 1947 г., 15 лет в июле 1948 г.).</li>
+        <li><strong>Мастер (Апрель):</strong> Уточнено — он не забирал бумаги у фон Круге в 1943 году, это сделал Алекс.</li>
+      </ol>
+    </div>
+
+    <!-- НАЧАЛО ДОСЬЕ -->
+    <h2 class="doc-title" style="margin-bottom: 3rem;">Верифицированные оперативные досье</h2>
+
+    <!-- 1. АЛЕКС -->
+    <h3 class="doc-section-title">1. АЛЕКС (Бывший «ХОЗЯИН»)</h3>
+    
+    <div class="photo-frame">
+      <p class="photo-title">🔍 [Архивное фото № 01]</p>
+      <p class="photo-desc">Черно-белый снимок. Крупный план: мужские руки в лайковых перчатках. На столе — разряженный револьвер и пять аккуратных окурков сигар. На запястье блеснет циферблат Patek Philippe. Лицо в тени зеленой лампы.</p>
+    </div>
+
+    <ul class="doc-list">
+      <li>• <strong>Статус:</strong> Отстранен. Скрылся.</li>
+      <li>• <strong>Легенда:</strong> Дипломат, представитель интересов.</li>
+      <li>• <strong>Верифицированные данные:</strong> Пол: М. Возраст: ~45-50. Языки: DE, FR, EN, IT.</li>
+      <li>• <strong>Подтвержденные связи:</strong> Марта (партнер), Вальтер (исполнитель), Мастер (оппонент).</li>
+      <li>• <strong>Ключевые навыки:</strong> Токсикология («Кола-5»), безупречное следование протоколу, музыкальный слух (распознавание сигналов в ариях).</li>
+      <li>• <strong>Текущий статус:</strong> Жив. Находится в глубоком подполье. Отцовство над Майей-Розой опровергнуто.</li>
+    </ul>
+
+    <!-- 2. МАСТЕР -->
+    <h3 class="doc-section-title">2. МАСТЕР / АПРЕЛЬ (Хавьер Монтеро)</h3>
+
+    <div class="photo-frame">
+      <p class="photo-title">🔍 [Архивное фото № 02]</p>
+      <p class="photo-desc">Фоторобот и архивная справка. Мужчина ~45 лет. На столе — открытый дневник с ложным дном, тушь, уголь. Рядом лежит никелированный стакан и ружье James Purdey & Sons. На щеке — едва заметная точка от укола иглой.</p>
+    </div>
+
+    <ul class="doc-list">
+      <li>• <strong>Статус:</strong> Действующий оператор. Преемник.</li>
+      <li>• <strong>Легенда:</strong> Культурный атташе Испании в Берне.</li>
+      <li>• <strong>Верифицированные данные:</strong> Пол: М. Возраст: ~45-50. Происхождение: Куба/Испания (школа Ассорбенте).</li>
+      <li>• <strong>Подтвержденные связи:</strong> Виолетта (Королева), Алекс, Вальтер, Майя-Роза (биологический отец).</li>
+      <li>• <strong>Ключевые навыки:</strong> Глубокая аналитика, рисование (тушь/уголь), токсикология («Кола-8»), конспирация.</li>
+      <li>• <strong>Текущий статус:</strong> Жив. Передал ключ от ячейки и папку дочери. Принял игру.</li>
+    </ul>
+
+    <!-- 3. ВИОЛЕТТА -->
+    <h3 class="doc-section-title">3. ВИОЛЕТТА / ОЛЬГА (Новая Королева)</h3>
+
+    <div class="photo-frame">
+      <p class="photo-title">🔍 [Архивное фото № 03]</p>
+      <p class="photo-desc">Снимок из примерочной ателье. На переднем плане — кованая ширма. На столе лежит портновская игла с капелькой крови на острие и бежевая кожаная перчатка. Рядом — темные очки в роговой оправе.</p>
+    </div>
+
+    <ul class="doc-list">
+      <li>• <strong>Статус:</strong> Вышла из Сетки. Скрылась.</li>
+      <li>• <strong>Легенда:</strong> Оперная певица (сопрано), затем — гражданское лицо Ольга.</li>
+      <li>• <strong>Верифицированные данные:</strong> Пол: Ж. Возраст: ~41. Языки: DE, IT, FR, ES.</li>
+      <li>• <strong>Подтвержденные связи:</strong> Марта (предшественница), Мастер, Портной, Майя-Роза (фактическая опекунша).</li>
+      <li>• <strong>Ключевые навыки:</strong> Стратегическое планирование, маскировка, владение холодным оружием (стилет, игла).</li>
+      <li>• <strong>Текущий статус:</strong> Жива. Забрала папку и деньги из цюрихского банка. Ушла в тень ради Майи.</li>
+    </ul>
+
+    <!-- 4. МАРТА -->
+    <h3 class="doc-section-title">4. МАРТА (Предыдущая Королева)</h3>
+
+    <div class="photo-frame">
+      <p class="photo-title">🔍 [Архивное фото № 04]</p>
+      <p class="photo-desc">Выцветший портрет. Молодая женщина с улыбкой, без грима. На обороте надпись: «Лацио». Рядом — обрывок веревки.</p>
+    </div>
+
+    <ul class="doc-list">
+      <li>• <strong>Статус:</strong> Ликвидирована (самоубийство / жертва системе).</li>
+      <li>• <strong>Верифицированные данные:</strong> Пол: Ж. Возраст: ~30-35 на момент гибели.</li>
+      <li>• <strong>Подтвержденные связи:</strong> Алекс (партнер), Мастер (Апрель) (краткая связь, отец её ребенка), Майя-Роза (дочь).</li>
+      <li>• <strong>Ключевые навыки:</strong> Конспирация, управление, жертвенность.</li>
+      <li>• <strong>Текущий статус:</strong> Мертва. Прыгнула в Лацио, чтобы вывести дочь из-под удара Сетки.</li>
+    </ul>
+
+    <!-- 5. МАЙЯ-РОЗА -->
+    <h3 class="doc-section-title">5. МАЙЯ-РОЗА</h3>
+
+    <div class="photo-frame">
+      <p class="photo-title">🔍 [Архивное фото № 05]</p>
+      <p class="photo-desc">Уличный снимок, Берн, июль 1948. Девушка 15 лет в легком ситцевом платье. На запястье — тонкий серебряный браслет. В руках — увядший букет. На фоне — цветочная лавка мадам Жако и фонтан с курантами.</p>
+    </div>
+
+    <ul class="doc-list">
+      <li>• <strong>Статус:</strong> Гражданское лицо.</li>
+      <li>• <strong>Верифицированные данные:</strong> Пол: Ж. Возраст: 13 (1947), 15 (1948).</li>
+      <li>• <strong>Подтвержденные связи:</strong> Марта (мать), Мастер/Апрель (отец), Ольга (опекунша).</li>
+      <li>• <strong>Ключевые навыки:</strong> Отсутствие шпионских навыков. Психологическая устойчивость, самостоятельность.</li>
+      <li>• <strong>Текущий статус:</strong> Жива. Работает в цветочной лавке, снимает мансарду, готовится к поступлению в колледж. Отказалась от наследства (папки).</li>
+    </ul>
+
+    <!-- 6. ВАЛЬТЕР -->
+    <h3 class="doc-section-title">6. ВАЛЬТЕР</h3>
+
+    <div class="photo-frame">
+      <p class="photo-title">🔍 [Архивное фото № 06]</p>
+      <p class="photo-desc">Оперативная съемка. Мутная вода, пузырьки газа, поднимающиеся к поверхности. На дне виден силуэт мужчины. Рядом плавают обрывки контрабандных газовых мешков.</p>
+    </div>
+
+    <ul class="doc-list">
+      <li>• <strong>Статус:</strong> Ликвидирован (несчастный случай / самоубийство).</li>
+      <li>• <strong>Верифицированные данные:</strong> Пол: М. Возраст: ~40.</li>
+      <li>• <strong>Подтвержденные связи:</strong> Алекс, Мастер, фон Круге, Аргентинец.</li>
+      <li>• <strong>Ключевые навыки:</strong> Утопление, работа под водой (до 15м), задержка дыхания.</li>
+      <li>• <strong>Текущий статус:</strong> Мертв. Погиб на Сардинии в феврале 1947 г. из-за неспособности всплыть (последствия пыток Аргентинца и разрыва барабанных перепонок). <br><em>Примечание:</em> слухи о вязании на спицах признаны мифом.</li>
+    </ul>
+
+    <!-- 7. ФОН КРУГЕ -->
+    <h3 class="doc-section-title">7. ЙОАХИМ ФОН КРУГЕ (Ганс Крюгер)</h3>
+
+    <div class="photo-frame">
+      <p class="photo-title">🔍 [Архивное фото № 07]</p>
+      <p class="photo-desc">Снимок из вагона поезда. Мужчина ~50 лет в потёртом пальто спит на брезенте. На столике рядом — серебряный портсигар с гравировкой «две скрещённые сабли» и дымящаяся сигара.</p>
+    </div>
+
+    <ul class="doc-list">
+      <li>• <strong>Статус:</strong> Ликвидирован.</li>
+      <li>• <strong>Верифицированные данные:</strong> Пол: М. Бывший офицер Гестапо.</li>
+      <li>• <strong>Подтвержденные связи:</strong> Вальтер, Алекс, Аргентинец.</li>
+      <li>• <strong>Текущий статус:</strong> Мертв. Отравлен сигарой «Кола-5» в поезде Берн-Бари (исполнитель — Алекс).</li>
+    </ul>
+
+    <!-- 8. АРГЕНТИНЕЦ -->
+    <h3 class="doc-section-title">8. «АРГЕНТИНЕЦ»</h3>
+
+    <div class="photo-frame">
+      <p class="photo-title">🔍 [Архивное фото № 08]</p>
+      <p class="photo-desc">Фоторобот. Узкое лицо, длинный нос, левая бровь выше правой. На лацкане пиджака — значок Дипломатического клуба. Волосы блестят от бриолина. На фоне — охотничье ружье и снежный склон.</p>
+    </div>
+
+    <ul class="doc-list">
+      <li>• <strong>Статус:</strong> Ликвидирован.</li>
+      <li>• <strong>Верифицированные данные:</strong> Пол: М. Возраст: ~40. Происхождение: Карибский регион (не Аргентина).</li>
+      <li>• <strong>Подтвержденные связи:</strong> Фон Круге, Пенья, Вальтер, Мастер.</li>
+      <li>• <strong>Ключевые навыки:</strong> Дипломатия, шантаж, манипуляции, знание контрабандных путей.</li>
+      <li>• <strong>Текущий статус:</strong> Мертв. Погиб 5 февраля 1947 г. на охоте в кантоне Берн (отравлен «Колой-8», паника, падение с обрыва).</li>
+    </ul>
+
+    <!-- ВТОРОСТЕПЕННЫЕ ПЕРСОНАЖИ -->
+    <h3 class="doc-section-title">Приложение: Второстепенные лица и исполнители</h3>
+    <ul class="doc-list" style="padding-left: 0; list-style-type: none;">
+      <li style="margin-bottom: 1.5rem;">• <strong>ПОРТНОЙ</strong> (Берн, Hauptbahnhofstrasse 47). Еврей, беженец. Связной и свидетель. Передал ключ и письмо Майе. <br><em>Статус:</em> Жив.</li>
+      <li style="margin-bottom: 1.5rem;">• <strong>ЛЕСОРУБ</strong> (Кантон Берн). Наемник Мастера. Утопил Гринго в пруду, инсценировав самооборону. <br><em>Статус:</em> Жив, получил вознаграждение.</li>
+      <li style="margin-bottom: 1.5rem;">• <strong>ГРИНГО</strong> (Телохранитель Аргентинца). Утоплен лесорубом на охоте. <br><em>Статус:</em> Ликвидирован.</li>
+      <li style="margin-bottom: 1.5rem;">• <strong>ДИ СТЕФАНО</strong> (Тенор). Оперный певец, связной Сетки. Передавал микрофильм через корзину с камелиями. <br><em>Статус:</em> Жив, не подозревает о сути своей роли.</li>
+      <li style="margin-bottom: 1.5rem;">• <strong>ПЕНЬЯ</strong> (Алехандро Кастильо). Второй секретарь Доминиканской миссии. <br><em>Статус:</em> Ликвидирован. <em>Уточнение:</em> Утоплен в ванне Вальтером по заказу Сети (Алекса), а не лично Алексом.</li>
+      <li style="margin-bottom: 1.5rem;">• <strong>АССОРБЕНТЕ</strong> (Пеппе Руджеро). Кубинский наставник Мастера. <br><em>Статус:</em> Мертв (умер 3 марта 1929 г.).</li>
+    </ul>
+
+    <div style="border-top: 1px dashed #1a1a1a; margin-top: 3rem; padding-top: 1.5rem; text-align: center;">
+      <p style="font-weight: bold; text-transform: uppercase; font-size: 1rem; letter-spacing: 0.05em;">КОНЕЦ ДОСЬЕ.</p>
+      <p style="font-size: 1rem; font-style: italic; margin-top: 0.5rem; color: #4a4a4a;">Дело закрыто. Архив опечатан. Ключ от ячейки № 147 (Тальштрассе, Цюрих) уничтожен или передан ненадлежащему лицу (Майе-Розе).</p>
+    </div>
+
+    <!-- ШИФРОВКА АРХИВАРИУСА -->
+    <div class="intercept-block">
+      <div class="intercept-header">
+        <p class="intercept-line">🔐 ПЕРЕХВАТ № 14/Ш</p>
+        <p class="intercept-line">ШИФРОВАННОЕ СООБЩЕНИЕ</p>
+        <p class="intercept-line">ДАТА: 08.02.1947 &middot; ОТ: АРХИВАРИУС → ЦЕНТР</p>
+        <p class="intercept-line">ГРИФ: СОВЕРШЕННО СЕКРЕТНО</p>
+        <p class="intercept-line" style="opacity: 0.5;">12345678910111213141516171819202122</p>
+      </div>
+      <p class="intercept-line">НАЧАЛО ПЕРЕДАЧИ//ОБЪЕКТЫ ИДЕНТИФИЦИРОВАНЫ. ФОТОМАТЕРИАЛЫ РАСПРЕДЕЛЕНЫ. НИЖЕ — СООТВЕТСТВИЕ КАДРОВ ЛИЦАМ.</p>
+      <p class="intercept-line" style="margin-top: 1rem;">АЛЕКС / ХОЗЯИН … 21, 06</p>
+      <p class="intercept-line">МАСТЕР / АПРЕЛЬ … 43, 29, 07</p>
+      <p class="intercept-line">ВИОЛЕТТА / ОЛЬГА … 46, 37</p>
+      <p class="intercept-line">МАРТА / КОРОЛЕВА (ПОКОЙНАЯ) … 38</p>
+      <p class="intercept-line">МАЙЯ-РОЗА … 45, 47</p>
+      <p class="intercept-line">ВАЛЬТЕР … 32, 54</p>
+      <p class="intercept-line">ФОН КРУГЕ … 16</p>
+      <p class="intercept-line">АРГЕНТИНЕЦ … 30, 26</p>
+      <p class="intercept-line" style="margin-top: 1.5rem; font-size: 0.9rem; color: #8A7E6B; font-style: italic;">ПРИМЕЧАНИЕ ДЕШИФРОВАЛЬЩИКА:</p>
+      <p class="intercept-line" style="font-size: 0.9rem; color: #8A7E6B; font-style: italic;">Первый номер — основной (портрет/досье). Второй — вспомогательный (контекст/атрибут). Третий — оперативный (в действии).</p>
+      <p class="intercept-line" style="margin-top: 2rem; opacity: 0.4;">SSd43-09YYtbghh$667  Yty^^%dO9NN  Hghy^666%5g  111</p>
+      <p class="intercept-line" style="opacity: 0.4;">CLEAR- .</p>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
